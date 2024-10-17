@@ -8,6 +8,6 @@ The Rett Syndrome Patient Registry aims to collect and manage contact and patien
 - To provide a backoffice interface for managing data with CRUD capabilities.
 
 ## Key Stakeholders
-- Legal Guardians (providing patient data)
+- Legal Guardians (providing patient data, without access to the backoffice)
 - Backoffice Administrators (managing data)
-- Researchers and other stakeholders (end users of the data, but not interacting with the onboarding system directly)
+- Researchers and other stakeholders (end users of the data, but not interacting with the onboarding system directly, only access to anonymized data)
