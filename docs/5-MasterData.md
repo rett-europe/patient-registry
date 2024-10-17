@@ -14,8 +14,7 @@ The Master Data section covers the main data structure for contacts, patients, a
 - Email
 - Mobile Number (Optional)
 - Country
-- State (Optional)
-- Relationship to Patient
+- State (Depends on the country)
 
 ### Patients
 - Patient UUID
@@ -25,6 +24,7 @@ The Master Data section covers the main data structure for contacts, patients, a
 - MECP2 Mutation or Clinical Diagnosis
 
 ### Relationships
+- Relationship UUID
 - Contact UUID
 - Patient UUID
 - Relationship Type (e.g., "Mother", "Father", "Legal Guardian")
