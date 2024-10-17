@@ -27,6 +27,8 @@ The onboarding form is publicly accessible and allows contacts (legal guardians)
 
 - **Data Flow**: Submissions are first stored in the staging database and validated before being moved to the master database.
 
+![Onboarding process](./images/onboarding-process.png)
+
 ### 2. Staging Database and Data Processing
 The staging database temporarily stores data from the onboarding form. Data must be validated (e.g., deduplication checks) before being moved to the master database, which contains the primary records for contacts, patients, and their relationships.
 
@@ -55,6 +57,8 @@ The registry supports the collection of longitudinal data by allowing administra
   - Generate private links using individual tokens.
   - Send email notifications to contacts with unique links.
   - Process survey responses and associate them with the correct patient.
+
+![Logitudinal Data](./images/survey-data-gathering.png)
 
 ### 6. Secure File Upload
 The system includes a secure file upload feature where legal guardians can upload files (e.g., genetic reports) using a private, token-based link. These files are securely stored and linked to the appropriate patient, ensuring GDPR compliance.
