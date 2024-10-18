@@ -16,3 +16,4 @@ Welcome to the functional documentation for the Rett Syndrome Patient Registry. 
 - [User Management](./docs/10-UserManagement.md)
 - [Reporting and Analytics](./docs/11-ReportingAndAnalytics.md)
 - [Security and Compliance](./docs/12-SecurityAndCompliance.md)
+- [Auditing](./docs/13-Auditing.md)
