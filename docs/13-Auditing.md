@@ -1,57 +1,76 @@
 # Auditing and Compliance
 
-To meet regulatory requirements and ensure the integrity of the data in the Rett Syndrome Patient Registry, the system includes a comprehensive auditing mechanism. This system records all key actions, submissions, and data changes in a traceable and immutable manner, ensuring full accountability and compliance with relevant regulatory frameworks.
+To ensure regulatory compliance and data integrity, the Rett Syndrome Patient Registry maintains a comprehensive auditing system. All actions related to data submission, file uploads, user access, and backoffice operations are logged, providing full traceability and accountability.
 
 ## Key Auditing Features
 
-### 1. **Audit Trail for Data Submissions**
-- **Survey Responses**: Every survey submission is logged with the following information:
+### 1. **Survey Responses**
+- Every survey submission is logged with the following information:
   - Contact's identity (verified through token and/or two-factor authentication).
   - Patient associated with the submission.
   - Timestamp of the submission.
   - Details of the survey completed.
-  
-- **File Uploads**: For every file uploaded by a contact, the audit trail records:
-  - Contact's identity.
+  - Authentication logs (2FA verification if used).
+- **Immutable Logs**: Once a survey is submitted, all related logs are stored in an immutable format to ensure they meet regulatory requirements.
+
+### 2. **File Uploads**
+- For every file uploaded by a contact, the audit trail records:
+  - Contact identity (verified through token or 2FA).
   - The patient to whom the file is linked.
-  - File type and timestamp.
-  - The extracted data (e.g., MECP2 mutation) and processing status.
-  
-- **Backoffice Operations**: Any action performed by an administrator in the backoffice (CRUD operations on contacts, patients, or relationships) is logged with:
+  - File type, upload timestamp, and extraction status.
+  - Details of the extracted data (e.g., MECP2 mutation) and the file's deletion status.
+- **Processing Logs**: OpenAI extraction is logged to ensure data is extracted and saved appropriately. Once the data is extracted, file deletion is confirmed and logged.
+
+### 3. **Backoffice Operations**
+- All CRUD operations performed by administrators are logged, including:
   - Administrator's identity.
-  - The action performed (e.g., create, update, delete).
+  - Action performed (e.g., create, update, delete).
   - Entity involved (contact, patient, relationship).
   - Timestamp of the action.
+- **Access Logs**: Every login or access to the backoffice system is logged, including:
+  - User identity.
+  - Timestamp of access.
+  - Success or failure of login attempts.
 
-### 2. **Audit Logs for User Access**
-- **Login and Authentication Events**: All access to the backoffice system is logged, including:
-  - User identity (via Microsoft 365 authentication).
-  - Time of login.
-  - Success or failure of the login attempt.
-  
-- **Two-Factor Authentication (2FA)**: When 2FA is used (e.g., for survey responses), the verification process is logged with details of the authentication step (e.g., SMS code sent and verified).
+### 4. **User Access and Management**
+- **Login Events**: Every login event is tracked, logging:
+  - User's identity.
+  - Login timestamp.
+  - Authentication status (success or failure).
+- **Role Changes**: Any modifications to user roles are logged, including:
+  - User who made the change.
+  - User whose role was changed.
+  - Timestamp of the role modification.
+- **Activity Logs**: Every action taken by administrators or other authorized users is logged to ensure full accountability.
 
-### 3. **Immutable Logs**
-- All audit logs are immutable, meaning they cannot be altered or deleted by any user, including administrators.
-- Logs are stored securely and can only be accessed by authorized personnel with audit privileges.
+### 5. **Report Generation and Exports**
+- **Report Logs**: Every time a report is generated, the following information is logged:
+  - User who generated the report.
+  - Date and time of the report generation.
+  - Type of report (e.g., patient demographics, mutation data).
+  - Whether the report was exported (e.g., to CSV or PowerBI).
 
-### 4. **Regulatory Compliance**
-- **GDPR**: The system ensures full compliance with GDPR by logging all actions related to data submission, access, and deletion requests from contacts or patients.
-- **HIPAA** (if applicable): For healthcare-related data, the system adheres to the Health Insurance Portability and Accountability Act (HIPAA), ensuring data security and privacy.
+## Regulatory Compliance
 
-### 5. **Data Retention Policies**
-- Audit logs are retained for a specified period, as required by applicable regulations (e.g., GDPR, HIPAA).
-- After the retention period, logs can be archived but must still remain accessible for auditing purposes when required by law.
+The auditing system is designed to ensure full compliance with various regulations, including:
+- **GDPR**: All access and data management actions are logged, ensuring that data processing is transparent and auditable.
+- **HIPAA** (if applicable): All interactions with patient data are logged and protected, ensuring compliance with healthcare-related regulations.
+- **Consent Tracking**: For all sensitive actions (e.g., data submission, file uploads), consent logs are maintained to prove compliance with privacy laws.
+
+## Data Security for Audit Logs
+
+- **Immutable Logs**: Audit logs are immutable, meaning they cannot be altered or deleted.
+- **Encryption**: All audit logs are encrypted both at rest and in transit to ensure they are securely stored.
+- **Access Control**: Only authorized personnel with specific auditing privileges can view or generate audit reports.
+- **Regular Backups**: Audit logs are backed up regularly to prevent data loss and ensure availability during audits.
+
+## Data Retention Policies
+
+- Audit logs are retained for a period specified by regulatory requirements (e.g., GDPR, HIPAA).
+- After the retention period, logs may be archived but will remain accessible for legal or regulatory audits.
+- All audit data will be securely deleted after the legally required retention period if no further use is mandated.
 
 ## Audit Review and Reporting
 
-- **Regular Audits**: Administrators or authorized audit personnel can generate audit reports periodically to review system activity and ensure compliance.
-- **Regulatory Reports**: The system supports the generation of detailed audit reports to be shared with regulatory bodies during inspections or audits.
-
-## Audit Logs and External Integrations
-- Logs can be exported for integration with external compliance tools or platforms, enabling further review and analysis by third-party auditors or legal teams.
-
-## Data Security for Audit Logs
-- **Encryption**: All audit logs are encrypted both at rest and in transit.
-- **Access Control**: Only authorized personnel with specific audit roles have access to the logs.
-- **Regular Backups**: Logs are backed up regularly to ensure that no data is lost.
+- **Audit Reports**: Administrators or authorized personnel can generate detailed audit reports to review all activities, ensuring compliance.
+- **External Review**: The system supports exporting audit logs for review by external auditors or regulatory bodies.
