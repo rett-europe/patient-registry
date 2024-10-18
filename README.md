@@ -59,7 +59,7 @@ The registry is managed by Rett Syndrome Europe (RSE) and adheres to the strict 
 
 ## 3. Data Collection Scope
 
-The data collected by the RSE Patient Registry will include, but is not limited to, the following categories:
+The data collected by the European Patient Registry will include, but is not limited to, the following categories:
 
 - **Demographic Data**: Age, gender, country of residence, etc.
 - **Genetic Information**: MECP2 mutation status, other genetic markers as available.
@@ -99,6 +99,6 @@ We are also keen to involve additional stakeholders who share our commitment to 
 
 ## 7. Conclusion
 
-The RSE Patient Registry Project is designed to complement existing databases and provide critical data for research, care, and clinical trials. We are committed to ensuring the highest standards of data protection and compliance throughout the project.
+The European Patient Registry Project is designed to complement existing databases and provide critical data for research, care, and clinical trials. We are committed to ensuring the highest standards of data protection and compliance throughout the project.
 
 We welcome feedback and collaboration to further refine our objectives and processes, and we remain open to discussions with experts and stakeholders to ensure the project's success.
