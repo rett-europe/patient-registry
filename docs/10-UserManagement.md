@@ -54,14 +54,6 @@ This section outlines the user management process, which is integrated with the 
 
 ---
 
-## Future Integrations
-
-- **Group-Based Permissions**: Possibility to set up group-based permissions within Azure AD to streamline user role assignments (e.g., a group for "Admins" and another for "Data Managers").
-  
-- **Azure AD Conditional Access**: Further refinement of access policies based on conditions such as device health, location, and risk level.
-
----
-
 ### Doctor Role Integration:
 
 By adding the **Doctor** role, the system allows healthcare professionals to securely access, review, and validate patient diagnoses based on uploaded genetic reports. The doctor’s actions are limited to reviewing and validating reports, while any modification or validation is tracked and logged for compliance purposes.
