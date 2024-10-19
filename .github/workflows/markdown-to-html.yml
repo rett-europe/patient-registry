@@ -32,7 +32,7 @@ jobs:
             python - <<EOF
               import markdown2, os
               input_file = '$file'
-              output_file = f'docs/{name}.html'
+              output_file = f'docs/${name}.html'
               markdown_content = open(input_file, 'r').read()
               css_link = '<link rel="stylesheet" type="text/css" href="style.css">'
               html_content = f'<html><head>{css_link}</head><body>' + markdown2.markdown(markdown_content) + '</body></html>'
