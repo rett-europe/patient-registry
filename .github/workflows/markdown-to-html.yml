@@ -24,21 +24,27 @@ jobs:
         run: |
           pip install markdown2
 
+      - name: Create Python script
+        run: |
+          cat << 'EOF' > convert_md_to_html.py
+          import sys
+          import markdown2
+          input_file = sys.argv[1]
+          output_file = sys.argv[2]
+          with open(input_file, 'r') as f:
+              markdown_content = f.read()
+          css_link = '<link rel="stylesheet" type="text/css" href="style.css">'
+          html_content = f'<html><head>{css_link}</head><body>' + markdown2.markdown(markdown_content) + '</body></html>'
+          with open(output_file, 'w') as f:
+              f.write(html_content)
+          EOF
+
       - name: Convert Markdown to HTML
         run: |
           for file in docs/*.md; do
             filename=$(basename -- "$file")
             name="${filename%.*}"
-            python - <<EOF
-import markdown2, os
-input_file = '$file'
-output_file = f'docs/${name}.html'
-markdown_content = open(input_file, 'r').read()
-css_link = '<link rel="stylesheet" type="text/css" href="style.css">'
-html_content = f'<html><head>{css_link}</head><body>' + markdown2.markdown(markdown_content) + '</body></html>'
-with open(output_file, 'w') as f:
-    f.write(html_content)
-EOF
+            python convert_md_to_html.py "$file" "docs/${name}.html"
           done
 
       - name: Deploy to GitHub Pages
