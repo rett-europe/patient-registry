@@ -46,15 +46,35 @@ img {
     height: 50px; /* Adjust the size as needed */
 }
 
+/* Style for the navigation bar */
 nav {
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f8; /* Optional: background color */
+    padding: 10px;
+}
+
+/* Logo styles */
+nav a img.logo {
+    height: 50px; /* Adjust the size as needed */
+    margin-right: 20px;
+}
+
+/* Navigation links container */
+.nav-links {
     display: flex;
     align-items: center;
 }
 
-nav a {
+/* Navigation links */
+.nav-links a {
+    text-decoration: none;
+    color: #333;
     margin-right: 15px;
+    font-weight: bold;
 }
 
-nav img {
-    vertical-align: middle;
+/* Hover effect for navigation links */
+.nav-links a:hover {
+    color: #007acc; /* Optional: change color on hover */
 }
