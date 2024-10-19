@@ -42,8 +42,8 @@ jobs:
           with open(input_file, 'r') as f:
               markdown_content = f.read()
 
-          # Convert Markdown to HTML
-          body_content = markdown2.markdown(markdown_content)
+          # Convert Markdown to HTML with additional features
+          body_content = markdown2.markdown(markdown_content, extras=["fenced-code-blocks", "tables", "break-on-newline"])
 
           # Read the HTML template
           with open('docs/template.html', 'r') as f:
