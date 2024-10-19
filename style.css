@@ -13,9 +13,13 @@ h1, h2, h3 {
 }
 
 p {
-    margin-bottom: 1em;
-    white-space: pre-line; /* To preserve line breaks from Markdown */
-  }
+    margin: 0;
+    line-height: 1.4;
+}
+
+br {
+    line-height: 1.4;
+}
   
 table {
     width: 100%;
