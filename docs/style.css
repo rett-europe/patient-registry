@@ -41,3 +41,20 @@ img {
     display: block;
     margin: 20px auto; /* Center images */
 }
+
+.logo {
+    height: 50px; /* Adjust the size as needed */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    margin-right: 15px;
+}
+
+nav img {
+    vertical-align: middle;
+}
