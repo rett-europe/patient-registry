@@ -1,4 +1,4 @@
-# Master Data
+# 5. Master Data
 
 The Master Data section covers the main data structure for contacts, patients, and relationships. This database represents the final version of validated records.
 

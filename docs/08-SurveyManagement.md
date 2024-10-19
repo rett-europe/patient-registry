@@ -1,4 +1,4 @@
-# Survey Management
+# 8. Survey Management
 
 The Survey Management system facilitates the distribution of surveys to contacts associated with patients in the Rett Syndrome Patient Registry. To meet regulatory requirements, it includes a mechanism that guarantees surveys are answered by the designated contact, ensuring the integrity of the data collected.
 

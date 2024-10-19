@@ -1,4 +1,4 @@
-# Auditing and Compliance
+# 13. Auditing and Compliance
 
 To ensure regulatory compliance and data integrity, the Rett Syndrome Patient Registry maintains a comprehensive auditing system. All actions related to data submission, file uploads, user access, backoffice operations, OpenAI processing, and doctor validation are logged, providing full traceability and accountability.
 

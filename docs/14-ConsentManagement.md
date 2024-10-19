@@ -1,10 +1,10 @@
-# Consent Management
+# 14. Consent Management
 
 The European Rett Syndrome Patient Registry places a high priority on ensuring that all data collection activities comply with GDPR regulations, particularly with respect to obtaining explicit consent from participants or their legal guardians. This section outlines the processes for managing and tracking consent throughout the registry.
 
 ---
 
-## 1. Consent Collection
+## Consent Collection
 
 Consent is required before any personal or sensitive data can be collected from participants or their legal guardians. This includes demographic information, genetic data, medical history, and caregiver information.
 
@@ -20,7 +20,7 @@ Consent is required before any personal or sensitive data can be collected from 
 
 ---
 
-## 2. Consent Tracking and Documentation
+## Consent Tracking and Documentation
 
 To ensure compliance, the system tracks and stores detailed information about each consent provided by participants. This information is maintained in the system as long as it is legally required.
 
@@ -33,7 +33,7 @@ To ensure compliance, the system tracks and stores detailed information about ea
 
 ---
 
-## 3. Consent for Minors and Legal Guardianship
+## Consent for Minors and Legal Guardianship
 
 In cases where the participant is a minor or unable to provide consent on their own, legal guardians are responsible for providing consent. The system accommodates this by allowing legal guardians to act on behalf of the patient.
 
@@ -43,7 +43,7 @@ In cases where the participant is a minor or unable to provide consent on their 
 
 ---
 
-## 4. Right to Withdraw Consent
+## Right to Withdraw Consent
 
 Participants or legal guardians have the right to withdraw consent at any time, in accordance with GDPR. The system is designed to facilitate this process smoothly.
 
@@ -55,7 +55,7 @@ Participants or legal guardians have the right to withdraw consent at any time, 
 
 ---
 
-## 5. Compliance with GDPR
+## Compliance with GDPR
 
 The consent management process fully complies with GDPR, ensuring that participants are informed, their consent is obtained and tracked properly, and their right to withdraw is respected.
 
@@ -67,7 +67,7 @@ The consent management process fully complies with GDPR, ensuring that participa
 
 ---
 
-## 6. Auditing and Accountability
+## Auditing and Accountability
 
 All consent actions, including the provision and withdrawal of consent, are logged in the audit trail. This provides a clear record for regulatory bodies and helps ensure the registry’s compliance with legal and ethical standards.
 
@@ -76,6 +76,6 @@ All consent actions, including the provision and withdrawal of consent, are logg
 
 ---
 
-## 7. Ongoing Consent Review
+## Ongoing Consent Review
 
 As the project evolves and new features are added, participants or their legal guardians may be asked to re-confirm their consent if new types of data are collected or if the data use changes.

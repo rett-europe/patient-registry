@@ -1,4 +1,4 @@
-# Security and Compliance
+# 12. Security and Compliance
 
 This section outlines the security and compliance measures for the Rett Syndrome Patient Registry, ensuring GDPR compliance and the protection of sensitive data.
 

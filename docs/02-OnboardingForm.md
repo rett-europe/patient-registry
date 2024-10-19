@@ -1,4 +1,4 @@
-# Public Onboarding Form
+# 2. Public Onboarding Form
 
 The public onboarding form is the first step for contacts (legal guardians) to register patients in the system.
 

@@ -1,6 +1,6 @@
 # Rett Syndrome Patient Registry - Functional Documentation
 
-## Overview
+## 1. Overview
 
 The Rett Syndrome Patient Registry is a system designed to collect, store, and manage data related to patients with Rett Syndrome. The system focuses on gathering essential contact, patient, and longitudinal data through various forms and surveys, ensuring secure and compliant data management.
 
@@ -87,7 +87,3 @@ The system integrates with reporting tools like PowerBI to allow administrators 
   - Exporting data for external analysis.
 
 ---
-
-## Conclusion
-
-The Rett Syndrome Patient Registry is a comprehensive system designed to gather, manage, and analyze data in a secure and compliant manner. The system prioritizes ease of use for contacts, robust data management for administrators, and strong security measures to ensure compliance with privacy regulations.

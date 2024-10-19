@@ -1,4 +1,4 @@
-# Staging Database
+# 3. Staging Database
 
 The Staging Database serves as a temporary storage layer for all data submitted through the Public Onboarding Form. This layer allows administrators to review and validate the data before transferring it to the master dataset.
 

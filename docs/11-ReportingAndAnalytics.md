@@ -1,4 +1,4 @@
-# Reporting and Analytics
+# 11. Reporting and Analytics
 
 This section covers the reporting and analytics capabilities provided by the system, with a focus on patient demographics, mutations, and relationships.
 

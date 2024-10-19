@@ -1,4 +1,4 @@
-# File Upload Feature
+# 9. File Upload Feature
 
 The file upload feature allows contacts to securely upload files (such as genetic reports) associated with specific patients. To minimize storage and improve data processing, OpenAI is integrated to extract key information from the files. Additionally, a doctor can be requested to validate the diagnosis by analyzing the report, ensuring that both automated and expert validation processes are applied.
 

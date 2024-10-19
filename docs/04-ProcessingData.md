@@ -1,4 +1,4 @@
-# Processing Data
+# 4. Processing Data
 
 The process of moving data from the Staging Database to the Master Data is handled via an internal GUI tool that allows administrators to validate and review submissions.
 

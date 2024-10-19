@@ -1,4 +1,4 @@
-# Longitudinal Data Collection
+# 7. Longitudinal Data Collection
 
 The longitudinal data collection process allows for gathering ongoing data for each patient at different points in time, through surveys. This process is crucial for tracking changes and updates in the patients' condition, genetic information, and treatments over time.
 
