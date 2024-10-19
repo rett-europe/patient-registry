@@ -12,6 +12,11 @@ h1, h2, h3 {
     color: #333;
 }
 
+p {
+    margin-bottom: 1em;
+    white-space: pre-line; /* To preserve line breaks from Markdown */
+  }
+  
 table {
     width: 100%;
     border-collapse: collapse;
