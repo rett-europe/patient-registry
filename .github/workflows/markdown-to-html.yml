@@ -29,7 +29,16 @@ jobs:
           for file in docs/*.md; do
             filename=$(basename -- "$file")
             name="${filename%.*}"
-            python -c "import markdown2, os; input_file='$file'; output_file=f'docs/{name}.html'; markdown_content=open(input_file, 'r').read(); css_link='<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">'; html_content=f'<html><head>{css_link}</head><body>' + markdown2.markdown(markdown_content) + '</body></html>'; open(output_file, 'w').write(html_content)"
+            python -c "
+              import markdown2, os
+              input_file = '$file'
+              output_file = f'docs/{name}.html'
+              markdown_content = open(input_file, 'r').read()
+              css_link = '<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">'
+              html_content = f'<html><head>{css_link}</head><body>' + markdown2.markdown(markdown_content) + '</body></html>'
+              with open(output_file, 'w') as f:
+                  f.write(html_content)
+              "
           done
 
       - name: Deploy to GitHub Pages
