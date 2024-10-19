@@ -1,0 +1,918 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Rett Syndrome Patient Registry - Functional Documentation</h1>
+
+<h2>1. Overview</h2>
+
+<p>The Rett Syndrome Patient Registry is a system designed to collect, store, and manage data related to patients with Rett Syndrome. The system focuses on gathering essential contact, patient, and longitudinal data through various forms and surveys, ensuring secure and compliant data management.</p>
+
+<p>The system provides administrators with tools to manage the data, while ensuring that contacts (legal guardians) can securely contribute relevant patient information. It is designed with GDPR compliance in mind, leveraging secure file handling and encryption protocols. The system integrates with the Microsoft ecosystem for user management and access control, providing a seamless experience for authorized personnel within the organization.</p>
+
+<h3>Key Objectives:</h3>
+
+<ul>
+<li><strong>Onboarding</strong>: Provide a public form where legal guardians can onboard themselves and their associated patients without requiring authentication.</li>
+<li><strong>Data Management</strong>: Enable the administration of contacts, patients, and relationships through a backoffice tool.</li>
+<li><strong>Longitudinal Data Collection</strong>: Facilitate the continuous collection of patient data over time via secure surveys linked to specific patients.</li>
+<li><strong>File Upload</strong>: Provide a secure mechanism for legal guardians to upload files, such as genetic reports, that are linked to patients.</li>
+<li><strong>User Management</strong>: Leverage the Microsoft 365 ecosystem for authentication and authorization, ensuring that all user access is managed securely.</li>
+<li><strong>Security &amp; Compliance</strong>: Ensure the system complies with GDPR and maintains high standards for data encryption and protection.</li>
+</ul>
+
+<hr />
+
+<h2>Key Functional Areas</h2>
+
+<h3>1. Public Onboarding</h3>
+
+<p>The onboarding form is publicly accessible and allows contacts (legal guardians) to register themselves and the patients under their care. No authentication is required to complete the form, and all submissions are stored in a staging database for review before final entry into the master database.</p>
+
+<ul>
+<li><p><strong>Fields Collected</strong>: </p>
+
+<ul>
+<li>Contact: Full Name, Email, Mobile, Country, State, Relationship to Patient</li>
+<li>Patient: Full Name, Date of Birth, Gender, MECP2 Mutation (or clinical diagnosis)</li>
+</ul></li>
+<li><p><strong>Data Flow</strong>: Submissions are first stored in the staging database and validated before being moved to the master database.</p></li>
+</ul>
+
+<p><img src="docs/./images/onboarding-process.png" alt="Onboarding process" /></p>
+
+<h3>2. Staging Database and Data Processing</h3>
+
+<p>The staging database temporarily stores data from the onboarding form. Data must be validated (e.g., deduplication checks) before being moved to the master database, which contains the primary records for contacts, patients, and their relationships.</p>
+
+<ul>
+<li><strong>Processing Workflow</strong>: Data validation, deduplication, and transfer to the master database.</li>
+</ul>
+
+<h3>3. Master Data</h3>
+
+<p>The master database contains all validated records of contacts, patients, and their relationships. Relationships define the connections between contacts (e.g., legal guardians) and patients (e.g., mother, father, legal guardian).</p>
+
+<ul>
+<li><strong>Entities</strong>: 
+<ul>
+<li>Contacts: Legal guardians or caregivers.</li>
+<li>Patients: Individuals diagnosed with Rett Syndrome.</li>
+<li>Relationships: Connections between contacts and patients.</li>
+</ul></li>
+</ul>
+
+<h3>4. Backoffice Application (CRUD)</h3>
+
+<p>The backoffice application allows administrators to perform full CRUD operations on contacts, patients, and their relationships. It includes list views, search functionality, and allows for adding, updating, and deleting records.</p>
+
+<ul>
+<li><strong>Functionalities</strong>:
+<ul>
+<li>CRUD operations for contacts, patients, and relationships.</li>
+<li>List and search features for managing data.</li>
+</ul></li>
+</ul>
+
+<h3>5. Longitudinal Data Collection</h3>
+
+<p>The registry supports the collection of longitudinal data by allowing administrators to send surveys to contacts at different intervals. Each survey is linked to the corresponding patient through a secure, tokenized system, ensuring data integrity.</p>
+
+<ul>
+<li><strong>Process</strong>:
+<ul>
+<li>Select a subset of patients.</li>
+<li>Generate private links using individual tokens.</li>
+<li>Send email notifications to contacts with unique links.</li>
+<li>Process survey responses and associate them with the correct patient.</li>
+</ul></li>
+</ul>
+
+<p><img src="docs/./images/survey-data-gathering.png" alt="Logitudinal Data" /></p>
+
+<h3>6. Secure File Upload</h3>
+
+<p>The system includes a secure file upload feature where legal guardians can upload files (e.g., genetic reports) using a private, token-based link. These files are securely stored and linked to the appropriate patient, ensuring GDPR compliance.</p>
+
+<ul>
+<li><strong>File Linking</strong>: Each uploaded file is associated with a patient and stored securely in an encrypted environment.</li>
+</ul>
+
+<h3>7. User Management (Microsoft 365 Integration)</h3>
+
+<p>All user management is handled through the Microsoft 365 ecosystem, ensuring that only authorized personnel within the organization can access the system. The system uses Single Sign-On (SSO) and Role-Based Access Control (RBAC) for managing user permissions.</p>
+
+<ul>
+<li><strong>Roles</strong>: Admin, Data Manager, Viewer.</li>
+<li><strong>Authentication</strong>: Handled via Microsoft Azure AD and SSO.</li>
+</ul>
+
+<h3>8. Security and GDPR Compliance</h3>
+
+<p>The system is fully compliant with GDPR regulations, ensuring that all personal and sensitive data is protected. Explicit consent is required from contacts when submitting data or uploading files. The system uses encryption for data both at rest and in transit.</p>
+
+<ul>
+<li><strong>Security Features</strong>:
+<ul>
+<li>Data encryption (at rest and in transit).</li>
+<li>Role-based access control.</li>
+<li>GDPR-compliant consent management.</li>
+</ul></li>
+</ul>
+
+<h3>9. Reporting and Analytics</h3>
+
+<p>The system integrates with reporting tools like PowerBI to allow administrators to generate detailed reports on patient demographics, mutation data, and longitudinal trends. All reports are anonymized to ensure privacy.</p>
+
+<ul>
+<li><strong>Capabilities</strong>:
+<ul>
+<li>Anonymized reporting.</li>
+<li>Exporting data for external analysis.</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h1>2. Public Onboarding Form</h1>
+
+<p>The public onboarding form is the first step for contacts (legal guardians) to register patients in the system.</p>
+
+<h2>Form Details</h2>
+
+<ul>
+<li>Accessible publicly without requiring authentication.</li>
+<li>Open to any legal guardian who needs to add a new patient.</li>
+<li>The form will collect basic information about both contacts and patients.</li>
+</ul>
+
+<h2>Required Fields</h2>
+
+<h3>Contact Information</h3>
+
+<ul>
+<li>Full Name</li>
+<li>Email</li>
+<li>Mobile Number (Optional)</li>
+<li>Country</li>
+<li>State (Optional, depends on the country)</li>
+<li>Relationship to Patient</li>
+</ul>
+
+<h3>Patient Information</h3>
+
+<ul>
+<li>Full Name</li>
+<li>Date of Birth</li>
+<li>Gender</li>
+<li>Confirm if there is a MECP2 mutation or it's a clinical diagnosis (or a different gene)</li>
+</ul>
+
+<h3>Consent Information</h3>
+
+<ul>
+<li>Explicit consent of privacy policy</li>
+</ul>
+
+<h2>Data Submission</h2>
+
+<ul>
+<li>All responses are persisted in the Staging Database for review before being moved into the master dataset.</li>
+</ul>
+
+<h1>3. Staging Database</h1>
+
+<p>The Staging Database serves as a temporary storage layer for all data submitted through the Public Onboarding Form. This layer allows administrators to review and validate the data before transferring it to the master dataset.</p>
+
+<h2>Purpose</h2>
+
+<ul>
+<li>To ensure data quality by allowing for manual or automated validation steps.</li>
+<li>To temporarily store information on contacts and patients before their final inclusion in the master dataset.</li>
+<li>To allow for deduplication and verification of data entries.</li>
+</ul>
+
+<h2>Data Flow</h2>
+
+<ol>
+<li>Form submissions from the Public Onboarding Form are automatically persisted in the Staging Database.</li>
+<li>Data remains in the Staging Database until it is processed into the RettDB data model.</li>
+<li>Once data is validated and confirmed, it is transferred into the master database, where it becomes part of the main dataset.</li>
+</ol>
+
+<h2>Data Validation</h2>
+
+<ul>
+<li>Validation steps can include checking for duplicate records (e.g., patients with the same name and birthdate) and verifying the integrity of the provided MECP2 mutation data.</li>
+<li>Administrators can review submissions through the backoffice interface before finalizing the transfer.</li>
+</ul>
+
+<h2>Data Retention</h2>
+
+<ul>
+<li>Data in the Staging Database is retained until reviewed and processed. After processing, staging data can be either archived or deleted, based on retention policies.</li>
+</ul>
+
+<h1>4. Processing Data</h1>
+
+<p>The process of moving data from the Staging Database to the Master Data is handled via an internal GUI tool that allows administrators to validate and review submissions.</p>
+
+<h2>Data Review</h2>
+
+<ul>
+<li>Administrators access the Staging Database through an internal tool that displays pending submissions.</li>
+<li>Each submission is reviewed to ensure all required fields are present and accurate.</li>
+<li>Data related to contacts and patients is validated, including checks for duplicates and data consistency.</li>
+</ul>
+
+<h2>Transfer to Master Database</h2>
+
+<ul>
+<li>Once validated, the data is processed into the RettDB data model.</li>
+<li>For each submission, contact and patient records are created or updated in the master database.</li>
+<li>Relationships between contacts and patients are established (e.g., mother-daughter, legal guardian, etc.).</li>
+</ul>
+
+<h2>Logic for Managing Data</h2>
+
+<ul>
+<li><strong>Duplication Check</strong>: During the processing phase, checks are performed to prevent duplicate patients or contacts from being added.</li>
+<li><strong>Relationship Management</strong>: The system ensures that relationships between contacts and patients are correctly established, with the possibility of one contact being linked to multiple patients and vice versa.</li>
+</ul>
+
+<h2>Error Handling</h2>
+
+<ul>
+<li>In case of validation errors (e.g., missing required fields, invalid data), submissions can be flagged for further review.</li>
+<li>Administrators can request more information from the contact before completing the data transfer.</li>
+</ul>
+
+<h1>5. Master Data</h1>
+
+<p>The Master Data section covers the main data structure for contacts, patients, and relationships. This database represents the final version of validated records.</p>
+
+<h2>Data Structure</h2>
+
+<ul>
+<li><strong>Contacts</strong>: Stores information related to legal guardians, caregivers, or individuals who are responsible for patients.</li>
+<li><strong>Patients</strong>: Contains details about the patients with Rett Syndrome, including genetic information, demographics, and medical history.</li>
+<li><strong>Relationships</strong>: Captures the relationships between contacts and patients, such as "mother", "father", or "legal guardian".</li>
+</ul>
+
+<h2>Data Fields</h2>
+
+<h3>Contacts</h3>
+
+<ul>
+<li>Contact UUID</li>
+<li>Full Name</li>
+<li>Email</li>
+<li>Mobile Number (Optional)</li>
+<li>Country</li>
+<li>State (Depends on the country)</li>
+</ul>
+
+<h3>Patients</h3>
+
+<ul>
+<li>Patient UUID</li>
+<li>Full Name</li>
+<li>Date of Birth</li>
+<li>Gender</li>
+<li>MECP2 Mutation or Clinical Diagnosis</li>
+</ul>
+
+<h3>Relationships</h3>
+
+<ul>
+<li>Relationship UUID</li>
+<li>Contact UUID</li>
+<li>Patient UUID</li>
+<li>Relationship Type (e.g., "Mother", "Father", "Legal Guardian")</li>
+</ul>
+
+<h1>6. Backoffice CRUD Operations</h1>
+
+<p>The Backoffice application provides administrators with a user interface to manage contacts, patients, and relationships. This interface allows for full CRUD (Create, Read, Update, Delete) operations and list views of all entities.</p>
+
+<h2>Features</h2>
+
+<ul>
+<li><strong>Contact Management</strong>: Add new contacts, update existing ones, and delete or archive old records.</li>
+<li><strong>Patient Management</strong>: Add new patients, update patient details, and delete or archive records.</li>
+<li><strong>Relationship Management</strong>: Manage multiple relationships between contacts and patients (e.g., one contact linked to multiple patients, and vice versa).</li>
+</ul>
+
+<h2>List Views</h2>
+
+<ul>
+<li><strong>Contacts List</strong>: Displays all registered contacts with basic details (name, email, relationship to patient).</li>
+<li><strong>Patients List</strong>: Displays all patients with their name, date of birth, and MECP2 mutation status.</li>
+<li><strong>Relationships List</strong>: Shows the relationships between contacts and patients.</li>
+</ul>
+
+<h2>CRUD Functions</h2>
+
+<ul>
+<li><strong>Create</strong>: Administrators can create new contacts, patients, and relationships.</li>
+<li><strong>Read</strong>: Administrators can view detailed records for each contact, patient, and relationship.</li>
+<li><strong>Update</strong>: Existing records can be edited, with all changes logged and timestamped.</li>
+<li><strong>Delete/Archive</strong>: Records can be soft-deleted, with an option for recovery or complete removal after a certain period.</li>
+</ul>
+
+<h1>7. Longitudinal Data Collection</h1>
+
+<p>The longitudinal data collection process allows for gathering ongoing data for each patient at different points in time, through surveys. This process is crucial for tracking changes and updates in the patients' condition, genetic information, and treatments over time.</p>
+
+<h2>Workflow</h2>
+
+<ol>
+<li><p><strong>Select a Subset of Patients</strong>  </p>
+
+<ul>
+<li>An administrator selects a target group of patients from the master database. This selection is based on certain criteria such as patient demographics, mutation status, or previous survey responses.</li>
+</ul></li>
+<li><p><strong>Generate Private Links for Surveys</strong>  </p>
+
+<ul>
+<li>A process generates individual tokens for each contact-patient pair.</li>
+<li>Each token is linked to a specific survey and patient, ensuring that the survey is unique and can only be submitted once by the contact.</li>
+<li>These tokens are stored in the Tokens table and are associated with both contacts and patients.</li>
+</ul></li>
+<li><p><strong>Send Email Notifications</strong>  </p>
+
+<ul>
+<li>Automated emails are sent to the selected contacts.</li>
+<li>Each email contains a unique survey link generated by the token system, which directs the contact to the survey page.</li>
+</ul></li>
+<li><p><strong>Receive and Process Survey Responses</strong>  </p>
+
+<ul>
+<li>Once the survey is completed, the response is stored with the corresponding token.</li>
+<li>The survey responses are linked to the correct patient in the master database, ensuring that longitudinal data is properly maintained for each patient.</li>
+<li>This allows multiple surveys to be associated with the same patient, forming a longitudinal data set.</li>
+</ul></li>
+</ol>
+
+<h2>Data Association</h2>
+
+<ul>
+<li><strong>Patient Surveys</strong>: Each patient can have multiple surveys associated with them over time, providing longitudinal data. </li>
+<li><strong>Token System</strong>: Ensures that each response is uniquely tied to a patient-contact pair, avoiding duplicate submissions or data inconsistencies.</li>
+</ul>
+
+<h1>8. Survey Management</h1>
+
+<p>The Survey Management system facilitates the distribution of surveys to contacts associated with patients in the Rett Syndrome Patient Registry. To meet regulatory requirements, it includes a mechanism that guarantees surveys are answered by the designated contact, ensuring the integrity of the data collected.</p>
+
+<h2>Survey Creation</h2>
+
+<ul>
+<li>Surveys are created by administrators to collect data over time, such as health updates or new genetic information.</li>
+<li>Surveys can cover a wide range of topics and are designed to collect longitudinal data that can be linked to specific patients.</li>
+</ul>
+
+<h2>Patient Targeting</h2>
+
+<ul>
+<li>Administrators can select a subset of patients from the master database to receive specific surveys.</li>
+<li>The system allows filtering based on criteria such as age, mutation type, or previous survey responses.</li>
+</ul>
+
+<h2>Token-Based Survey Distribution</h2>
+
+<ul>
+<li>For each selected patient, the system generates a unique token tied to the contact associated with the patient.</li>
+<li>This token is used to create a private, one-time link for the survey, ensuring that only the designated contact can submit a response.</li>
+</ul>
+
+<h2>Contact Authentication and Verification</h2>
+
+<p>To comply with regulatory requirements, the system includes a mechanism to verify that the survey is completed by the designated contact:</p>
+
+<ol>
+<li><p><strong>Token Verification</strong>: </p>
+
+<ul>
+<li>The survey link is unique to each contact-patient pair and can only be used once. Each link contains an embedded token that is verified before the survey is opened.</li>
+</ul></li>
+<li><p><strong>Two-Factor Authentication (2FA)</strong>:</p>
+
+<ul>
+<li>Before completing the survey, the contact is required to verify their identity using a second factor of authentication (2FA), such as an SMS code or authentication app.</li>
+<li>This ensures that only the authorized contact can access and complete the survey.</li>
+</ul></li>
+<li><p><strong>Audit Trail</strong>:</p>
+
+<ul>
+<li>The system records a detailed audit trail for each survey submission, including the identity of the contact who submitted the survey, the timestamp, and any authentication steps completed.</li>
+<li>This guarantees compliance with regulatory requirements and provides accountability for the data submitted.</li>
+</ul></li>
+<li><p><strong>Consent Confirmation</strong>:</p>
+
+<ul>
+<li>Each contact must confirm their consent before submitting the survey, ensuring compliance with privacy regulations such as GDPR.</li>
+</ul></li>
+</ol>
+
+<h2>Survey Response Processing</h2>
+
+<ul>
+<li>Once the survey is submitted, the response is securely stored in the database.</li>
+<li>Each response is linked to the corresponding patient, enabling longitudinal tracking of the patient’s condition or genetic information.</li>
+<li>Data is stored securely and is accessible only to authorized administrators.</li>
+</ul>
+
+<h2>Data Security and Privacy</h2>
+
+<ul>
+<li>All survey responses are encrypted both in transit and at rest.</li>
+<li>The system adheres to GDPR and other regulatory requirements for data protection, ensuring that sensitive patient and contact information is handled with care.</li>
+<li>Contact authentication ensures that responses are submitted only by verified individuals, protecting the integrity of the collected data.</li>
+</ul>
+
+<h1>9. File Upload Feature</h1>
+
+<p>The file upload feature allows contacts to securely upload files (such as genetic reports) associated with specific patients. To minimize storage and improve data processing, OpenAI is integrated to extract key information from the files. Additionally, a doctor can be requested to validate the diagnosis by analyzing the report, ensuring that both automated and expert validation processes are applied.</p>
+
+<hr />
+
+<h2>Workflow</h2>
+
+<ol>
+<li><p><strong>Token-Based Links</strong></p>
+
+<ul>
+<li>Each contact receives an individual token (unique link) via email, which is associated with a specific patient.</li>
+<li>The token is used to access the file upload page, ensuring that the file is securely linked to the correct patient.</li>
+</ul></li>
+<li><p><strong>Secure Upload</strong></p>
+
+<ul>
+<li>Contacts can upload files (e.g., genetic reports) through a secure form.</li>
+<li>File types can include PDFs, images, or any other supported format.</li>
+<li>The file upload form does not require login, only the token for authentication.</li>
+</ul></li>
+<li><p><strong>OpenAI Integration for Key Data Extraction</strong></p>
+
+<ul>
+<li>Once the file is uploaded, OpenAI is used to extract key information such as:
+<ul>
+<li>MECP2 mutation data.</li>
+<li>Patient demographics.</li>
+<li>Relevant medical details.</li>
+</ul></li>
+<li>This extracted data is structured and normalized before being stored in the database.</li>
+<li>The goal is to minimize the amount of raw data stored by only saving the extracted, relevant information.</li>
+</ul></li>
+<li><p><strong>Temporary File Storage</strong></p>
+
+<ul>
+<li>Uploaded files are stored temporarily while OpenAI processes them.</li>
+<li>Once the key data is extracted, the files are securely deleted from the system to avoid long-term storage.</li>
+<li>A retention policy ensures that files are only kept for the minimum time required for processing.</li>
+</ul></li>
+<li><p><strong>Doctor Review and Validation</strong></p>
+
+<ul>
+<li>After OpenAI extracts the key data, the system can notify a designated doctor to review and validate the diagnosis.</li>
+<li>The doctor receives a secure, token-based link to access the patient’s report and the extracted data.</li>
+<li>The doctor reviews the report, analyzes the provided diagnostic information, and can validate or add comments to the diagnosis.</li>
+<li>The doctor’s validation is securely logged and linked to the patient’s record in the database.</li>
+</ul></li>
+<li><p><strong>Data Linking</strong></p>
+
+<ul>
+<li>The extracted data, along with any validation from the doctor, is linked to the appropriate patient in the master database.</li>
+<li>Only the essential extracted information and doctor’s validation are stored, ensuring that database size is minimized.</li>
+</ul></li>
+<li><p><strong>GDPR Compliance</strong></p>
+
+<ul>
+<li>The file upload, data extraction, and validation processes adhere to GDPR standards.</li>
+<li>Contacts must give explicit consent before uploading files.</li>
+<li>Files and extracted data are encrypted both at rest and in transit, and unnecessary data is securely deleted after processing.</li>
+</ul></li>
+</ol>
+
+<hr />
+
+<h2>Key Advantages</h2>
+
+<ul>
+<li><strong>Automated Data Extraction</strong>: Using OpenAI to process files ensures that key information is extracted efficiently and stored in a structured format.</li>
+<li><strong>Expert Validation</strong>: By involving a doctor in the validation process, the system ensures that diagnoses are accurate and reviewed by a medical expert.</li>
+<li><strong>Minimized Storage</strong>: By extracting only key information and deleting the original files, the system avoids long-term file storage.</li>
+<li><strong>Improved Efficiency</strong>: OpenAI reduces manual data entry, while doctors ensure the accuracy and validation of the extracted data.</li>
+<li><strong>GDPR Compliance</strong>: The process is fully compliant with data protection laws, ensuring privacy and security for sensitive patient data.</li>
+</ul>
+
+<h1>10. User Management</h1>
+
+<p>This section outlines the user management process, which is integrated with the Microsoft ecosystem to ensure secure and centralized control of access to the system.</p>
+
+<hr />
+
+<h2>Microsoft 365 Integration</h2>
+
+<ul>
+<li><strong>Authentication</strong>: The system uses Microsoft 365 accounts to authenticate administrators, doctors, and users with access to sensitive data.</li>
+<li><strong>Azure AD</strong>: All user accounts are managed via Azure Active Directory (Azure AD), allowing for centralized management of roles and permissions.</li>
+<li><strong>Single Sign-On (SSO)</strong>: Users can log in using their Microsoft credentials, streamlining access through Single Sign-On (SSO) functionality.</li>
+</ul>
+
+<hr />
+
+<h2>Role-Based Access Control (RBAC)</h2>
+
+<ul>
+<li><strong>Roles</strong>: Users are assigned specific roles, including Admin, Data Manager, Viewer, and Doctor, based on their responsibilities.</li>
+</ul>
+
+<h3>Permissions by Role:</h3>
+
+<ul>
+<li><p><strong>Admin</strong>: </p>
+
+<ul>
+<li>Full access to CRUD operations on contacts, patients, relationships, and longitudinal data.</li>
+<li>Manage users and roles, including provisioning new users.</li>
+</ul></li>
+<li><p><strong>Data Manager</strong>: </p>
+
+<ul>
+<li>Can access and manage patient and contact information but cannot modify user roles or access sensitive data like genetic reports.</li>
+</ul></li>
+<li><p><strong>Viewer</strong>: </p>
+
+<ul>
+<li>Can view reports and data but cannot modify or delete any records.</li>
+</ul></li>
+<li><p><strong>Doctor</strong>:</p>
+
+<ul>
+<li>Can securely access and review patient reports uploaded by contacts.</li>
+<li>Responsible for validating diagnoses based on genetic reports.</li>
+<li>Can add comments or approve/reject diagnosis, which is logged in the system.</li>
+<li>No access to administrative or management functions (CRUD operations).</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h3>User Provisioning</h3>
+
+<ul>
+<li><strong>Admins</strong> can provision new users within Azure AD by assigning them roles and permissions as required.</li>
+<li>Users can be easily managed within Azure AD, including setting up doctors and other key personnel for review and validation of patient data.</li>
+</ul>
+
+<hr />
+
+<h2>Security</h2>
+
+<ul>
+<li><p><strong>Microsoft Compliance</strong>: Using Microsoft 365 and Azure AD ensures that the system leverages Microsoft’s built-in security measures, including two-factor authentication (2FA), conditional access policies, and compliance with industry standards.</p></li>
+<li><p><strong>Activity Logging</strong>: All user actions within the backoffice and validation processes are logged for audit purposes, ensuring traceability and accountability. This includes:</p>
+
+<ul>
+<li>Doctor actions related to reviewing and validating diagnoses.</li>
+<li>Access to sensitive patient reports and genetic data.</li>
+<li>OpenAI processing logs for actions performed by automated systems under specific roles.</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h3>Doctor Role Integration:</h3>
+
+<p>By adding the <strong>Doctor</strong> role, the system allows healthcare professionals to securely access, review, and validate patient diagnoses based on uploaded genetic reports. The doctor’s actions are limited to reviewing and validating reports, while any modification or validation is tracked and logged for compliance purposes.</p>
+
+<ul>
+<li><p><strong>Doctor Access</strong>: </p>
+
+<ul>
+<li>Doctors can only view and validate reports assigned to them through the secure link.</li>
+<li>Their access is logged, including timestamp and report review details, ensuring full traceability.</li>
+<li>They cannot perform any other system operations (CRUD on patients, contacts, etc.).</li>
+</ul></li>
+<li><p><strong>Doctor Validation Process</strong>: </p>
+
+<ul>
+<li>Once the doctor reviews the uploaded report, they can validate the diagnosis, which is logged and stored in the system.</li>
+<li>The validation is then available to administrators or data managers for further action, such as updating patient information or preparing reports.</li>
+</ul></li>
+</ul>
+
+<h1>11. Reporting and Analytics</h1>
+
+<p>This section covers the reporting and analytics capabilities provided by the system, with a focus on patient demographics, mutations, and relationships.</p>
+
+<h2>PowerBI Dashboard</h2>
+
+<ul>
+<li>Provides real-time reporting on data such as:
+<ul>
+<li>Number of registered patients.</li>
+<li>Age groups and demographic distribution.</li>
+<li>MECP2 mutation statuses and other genetic data.</li>
+</ul></li>
+</ul>
+
+<h2>Custom Reports</h2>
+
+<ul>
+<li>Administrators can generate custom reports based on specific filters (e.g., all patients with a clinical diagnosis, patients under 5 years old).</li>
+<li>Reports can be exported to CSV for sharing with external stakeholders or further analysis.</li>
+</ul>
+
+<h2>Anonymized Data Exports</h2>
+
+<ul>
+<li>All reports are anonymized to protect the privacy of patients and contacts.</li>
+<li>Sensitive fields such as names, emails, and birthdates are hashed or removed.</li>
+</ul>
+
+<h1>12. Security and Compliance</h1>
+
+<p>This section outlines the security and compliance measures for the Rett Syndrome Patient Registry, ensuring GDPR compliance and the protection of sensitive data.</p>
+
+<h2>Authentication and Authorization</h2>
+
+<ul>
+<li><strong>Backoffice Access</strong>: Access to the backoffice is restricted to authorized personnel only, using Microsoft 365 authentication (or other OAuth systems).</li>
+<li><strong>Role-based Access Control (RBAC)</strong>: Permissions are granted based on user roles, such as Admin or Data Manager, with different levels of access.</li>
+</ul>
+
+<h2>GDPR Compliance</h2>
+
+<ul>
+<li><strong>Data Minimization</strong>: Only necessary data is collected from contacts and patients.</li>
+<li><strong>Explicit Consent</strong>: All contacts must give explicit consent for data collection, as per GDPR requirements.</li>
+<li><strong>Right to Erasure</strong>: Contacts and patients have the right to request their data be removed from the system.</li>
+<li><strong>Data Encryption</strong>: All sensitive data (e.g., patient medical records, genetic information) is encrypted both in transit and at rest.</li>
+</ul>
+
+<h2>File Handling</h2>
+
+<ul>
+<li><strong>Secure Uploads</strong>: Files uploaded (e.g., genetic reports) are stored in a secure environment, with access restricted to authorized personnel only.</li>
+<li><strong>Anonymization</strong>: Personal identifiers are anonymized when used in reports or exports to protect patient and contact privacy.</li>
+</ul>
+
+<h2>Data Retention</h2>
+
+<ul>
+<li>Staging data is retained only until it is reviewed and transferred to the master database.</li>
+<li>Master data is retained indefinitely unless deletion is requested by a user or required by law.</li>
+</ul>
+
+<h1>13. Auditing and Compliance</h1>
+
+<p>To ensure regulatory compliance and data integrity, the Rett Syndrome Patient Registry maintains a comprehensive auditing system. All actions related to data submission, file uploads, user access, backoffice operations, OpenAI processing, and doctor validation are logged, providing full traceability and accountability.</p>
+
+<hr />
+
+<h2>Key Auditing Features</h2>
+
+<h3>1. <strong>Survey Responses</strong></h3>
+
+<ul>
+<li>Every survey submission is logged with the following information:
+<ul>
+<li>Contact's identity (verified through token and/or two-factor authentication).</li>
+<li>Patient associated with the submission.</li>
+<li>Timestamp of the submission.</li>
+<li>Details of the survey completed.</li>
+<li>Authentication logs (2FA verification if used).</li>
+</ul></li>
+<li><strong>Immutable Logs</strong>: Once a survey is submitted, all related logs are stored in an immutable format to ensure they meet regulatory requirements.</li>
+</ul>
+
+<h3>2. <strong>File Uploads and Data Processing</strong></h3>
+
+<ul>
+<li>For every file uploaded by a contact, the audit trail records:
+<ul>
+<li>Contact identity (verified through token or 2FA).</li>
+<li>The patient to whom the file is linked.</li>
+<li>File type, upload timestamp, and extraction status.</li>
+<li>Details of the extracted data (e.g., MECP2 mutation) and the file's deletion status.</li>
+</ul></li>
+<li><strong>Processing Logs</strong>: OpenAI processing is logged to track:
+<ul>
+<li>When the file was processed.</li>
+<li>What data was extracted.</li>
+<li>The deletion of the original file after processing is completed.</li>
+</ul></li>
+</ul>
+
+<h3>3. <strong>Doctor Review and Validation</strong></h3>
+
+<ul>
+<li>When a doctor is requested to validate a diagnosis based on an uploaded report, the audit trail captures:
+<ul>
+<li>The identity of the doctor accessing the report.</li>
+<li>The timestamp when the report was accessed.</li>
+<li>Any diagnosis validation or notes provided by the doctor.</li>
+<li>Confirmation that the validation or feedback has been stored in the system.</li>
+</ul></li>
+</ul>
+
+<h3>4. <strong>Backoffice Operations</strong></h3>
+
+<ul>
+<li>All CRUD operations performed by administrators are logged, including:
+<ul>
+<li>Administrator's identity.</li>
+<li>Action performed (e.g., create, update, delete).</li>
+<li>Entity involved (contact, patient, relationship).</li>
+<li>Timestamp of the action.</li>
+</ul></li>
+<li><strong>Access Logs</strong>: Every login or access to the backoffice system is logged, including:
+<ul>
+<li>User identity.</li>
+<li>Timestamp of access.</li>
+<li>Success or failure of login attempts.</li>
+</ul></li>
+</ul>
+
+<h3>5. <strong>User Access and Management</strong></h3>
+
+<ul>
+<li><strong>Login Events</strong>: Every login event is tracked, logging:
+<ul>
+<li>User's identity.</li>
+<li>Login timestamp.</li>
+<li>Authentication status (success or failure).</li>
+</ul></li>
+<li><strong>Role Changes</strong>: Any modifications to user roles are logged, including:
+<ul>
+<li>User who made the change.</li>
+<li>User whose role was changed.</li>
+<li>Timestamp of the role modification.</li>
+</ul></li>
+<li><strong>Activity Logs</strong>: Every action taken by administrators or other authorized users is logged to ensure full accountability.</li>
+</ul>
+
+<h3>6. <strong>Report Generation and Exports</strong></h3>
+
+<ul>
+<li><strong>Report Logs</strong>: Every time a report is generated, the following information is logged:
+<ul>
+<li>User who generated the report.</li>
+<li>Date and time of the report generation.</li>
+<li>Type of report (e.g., patient demographics, mutation data).</li>
+<li>Whether the report was exported (e.g., to CSV or PowerBI).</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2>Regulatory Compliance</h2>
+
+<p>The auditing system is designed to ensure full compliance with various regulations, including:
+- <strong>GDPR</strong>: All access and data management actions are logged, ensuring that data processing is transparent and auditable.
+- <strong>HIPAA</strong> (if applicable): All interactions with patient data are logged and protected, ensuring compliance with healthcare-related regulations.
+- <strong>Consent Tracking</strong>: For all sensitive actions (e.g., data submission, file uploads), consent logs are maintained to prove compliance with privacy laws.</p>
+
+<hr />
+
+<h2>Data Security for Audit Logs</h2>
+
+<ul>
+<li><strong>Immutable Logs</strong>: Audit logs are immutable, meaning they cannot be altered or deleted.</li>
+<li><strong>Encryption</strong>: All audit logs are encrypted both at rest and in transit to ensure they are securely stored.</li>
+<li><strong>Access Control</strong>: Only authorized personnel with specific auditing privileges can view or generate audit reports.</li>
+<li><strong>Regular Backups</strong>: Audit logs are backed up regularly to prevent data loss and ensure availability during audits.</li>
+</ul>
+
+<hr />
+
+<h2>Data Retention Policies</h2>
+
+<ul>
+<li>Audit logs are retained for a period specified by regulatory requirements (e.g., GDPR, HIPAA).</li>
+<li>After the retention period, logs may be archived but will remain accessible for legal or regulatory audits.</li>
+<li>All audit data will be securely deleted after the legally required retention period if no further use is mandated.</li>
+</ul>
+
+<hr />
+
+<h2>Audit Review and Reporting</h2>
+
+<ul>
+<li><strong>Audit Reports</strong>: Administrators or authorized personnel can generate detailed audit reports to review all activities, ensuring compliance.</li>
+<li><strong>External Review</strong>: The system supports exporting audit logs for review by external auditors or regulatory bodies.</li>
+</ul>
+
+<h1>14. Consent Management</h1>
+
+<p>The European Rett Syndrome Patient Registry places a high priority on ensuring that all data collection activities comply with GDPR regulations, particularly with respect to obtaining explicit consent from participants or their legal guardians. This section outlines the processes for managing and tracking consent throughout the registry.</p>
+
+<hr />
+
+<h2>Consent Collection</h2>
+
+<p>Consent is required before any personal or sensitive data can be collected from participants or their legal guardians. This includes demographic information, genetic data, medical history, and caregiver information.</p>
+
+<h3>Key Principles:</h3>
+
+<ul>
+<li><strong>Explicit Consent</strong>: Consent must be clearly and explicitly given by the participant or legal guardian. No data is collected without this.</li>
+<li><strong>Informed Consent</strong>: Participants are provided with full details of how their data will be used, who will have access to it, and their rights under GDPR.</li>
+<li><strong>Right to Withdraw</strong>: Participants have the right to withdraw consent at any time. Upon withdrawal, their data will be anonymized or deleted as required by GDPR.</li>
+</ul>
+
+<h3>How Consent is Obtained:</h3>
+
+<ul>
+<li><strong>Online Forms</strong>: Consent is collected through the public onboarding forms, where participants or legal guardians are required to check a box confirming their agreement with the data usage terms.</li>
+<li><strong>File Uploads</strong>: Before uploading any documents (e.g., genetic reports), participants are required to give consent for the processing and storage of these files.</li>
+<li><strong>Surveys</strong>: Each survey sent to participants is accompanied by a clear consent prompt, ensuring that participants understand how their responses will be used.</li>
+</ul>
+
+<hr />
+
+<h2>Consent Tracking and Documentation</h2>
+
+<p>To ensure compliance, the system tracks and stores detailed information about each consent provided by participants. This information is maintained in the system as long as it is legally required.</p>
+
+<h3>Consent Tracking Includes:</h3>
+
+<ul>
+<li><strong>Date and Time of Consent</strong>: The exact timestamp when consent was given.</li>
+<li><strong>Form or Action</strong>: The specific form or action (e.g., survey submission, onboarding, file upload) that required consent.</li>
+<li><strong>Participant Details</strong>: The identity of the participant or legal guardian who provided the consent.</li>
+<li><strong>IP Address</strong>: When necessary, the IP address from which consent was given may be logged for additional verification.</li>
+<li><strong>Audit Logs</strong>: All consent actions are recorded in an audit log for compliance and accountability purposes.</li>
+</ul>
+
+<hr />
+
+<h2>Consent for Minors and Legal Guardianship</h2>
+
+<p>In cases where the participant is a minor or unable to provide consent on their own, legal guardians are responsible for providing consent. The system accommodates this by allowing legal guardians to act on behalf of the patient.</p>
+
+<h3>Key Provisions:</h3>
+
+<ul>
+<li><strong>Guardian Consent</strong>: Legal guardians must explicitly confirm their status and provide consent on behalf of the minor or dependent.</li>
+<li><strong>Verification</strong>: Additional verification steps may be taken to ensure that the person providing consent is the authorized legal guardian.</li>
+</ul>
+
+<hr />
+
+<h2>Right to Withdraw Consent</h2>
+
+<p>Participants or legal guardians have the right to withdraw consent at any time, in accordance with GDPR. The system is designed to facilitate this process smoothly.</p>
+
+<h3>Withdrawal Process:</h3>
+
+<ul>
+<li><strong>Request for Withdrawal</strong>: Participants can submit a withdrawal request via the registry’s contact options or through the system's user interface.</li>
+<li><strong>Anonymization</strong>: Upon withdrawal, all personally identifiable information will be anonymized, ensuring that the participant’s data cannot be traced back to them.</li>
+<li><strong>Data Deletion</strong>: In cases where anonymization is not feasible, the data will be securely deleted from the system, and a record of the withdrawal will be stored in the audit logs.</li>
+<li><strong>Confirmation</strong>: Once the withdrawal is processed, the participant or legal guardian will receive confirmation that their data has been removed or anonymized.</li>
+</ul>
+
+<hr />
+
+<h2>Compliance with GDPR</h2>
+
+<p>The consent management process fully complies with GDPR, ensuring that participants are informed, their consent is obtained and tracked properly, and their right to withdraw is respected.</p>
+
+<h3>GDPR Key Requirements:</h3>
+
+<ul>
+<li><strong>Transparency</strong>: Participants are fully informed of how their data will be used.</li>
+<li><strong>Data Minimization</strong>: Only the necessary data is collected, and participants are made aware of the scope.</li>
+<li><strong>Right to Access</strong>: Participants have the right to request access to the data collected on them, including their consent records.</li>
+<li><strong>Right to Erasure</strong>: Participants can request the erasure of their data if they withdraw consent or if the data is no longer necessary for the registry’s purposes.</li>
+</ul>
+
+<hr />
+
+<h2>Auditing and Accountability</h2>
+
+<p>All consent actions, including the provision and withdrawal of consent, are logged in the audit trail. This provides a clear record for regulatory bodies and helps ensure the registry’s compliance with legal and ethical standards.</p>
+
+<ul>
+<li><strong>Audit Logs</strong>: Every consent-related action is recorded, ensuring that compliance with GDPR is verifiable.</li>
+<li><strong>Regular Audits</strong>: Internal and external audits can be conducted to verify that consent is being managed in line with regulatory requirements.</li>
+</ul>
+
+<hr />
+
+<h2>Ongoing Consent Review</h2>
+
+<p>As the project evolves and new features are added, participants or their legal guardians may be asked to re-confirm their consent if new types of data are collected or if the data use changes.</p>
+
+</body>
+</html>

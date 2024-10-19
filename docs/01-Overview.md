@@ -21,7 +21,7 @@ The system provides administrators with tools to manage the data, while ensuring
 ### 1. Public Onboarding
 The onboarding form is publicly accessible and allows contacts (legal guardians) to register themselves and the patients under their care. No authentication is required to complete the form, and all submissions are stored in a staging database for review before final entry into the master database.
 
-- **Fields Collected**: 
+- **Fields Collected**:
   - Contact: Full Name, Email, Mobile, Country, State, Relationship to Patient
   - Patient: Full Name, Date of Birth, Gender, MECP2 Mutation (or clinical diagnosis)
 
