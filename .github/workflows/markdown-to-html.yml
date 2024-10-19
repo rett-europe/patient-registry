@@ -3,7 +3,7 @@ name: Convert Markdown to HTML and Deploy to GitHub Pages
 on:
   push:
     paths:
-      - '**.md'   # Trigger only when markdown files are updated
+      - 'docs/**'  # Trigger when any files in the docs folder are updated
     branches:
       - main
 
