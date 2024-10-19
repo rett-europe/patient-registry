@@ -1,0 +1,130 @@
+<html><head><link rel="stylesheet" type="text/css" href="style.css"></head><body><h1>Rett Syndrome Patient Registry - Functional Documentation</h1>
+
+<h2>1. Overview</h2>
+
+<p>The Rett Syndrome Patient Registry is a system designed to collect, store, and manage data related to patients with Rett Syndrome. The system focuses on gathering essential contact, patient, and longitudinal data through various forms and surveys, ensuring secure and compliant data management.</p>
+
+<p>The system provides administrators with tools to manage the data, while ensuring that contacts (legal guardians) can securely contribute relevant patient information. It is designed with GDPR compliance in mind, leveraging secure file handling and encryption protocols. The system integrates with the Microsoft ecosystem for user management and access control, providing a seamless experience for authorized personnel within the organization.</p>
+
+<h3>Key Objectives:</h3>
+
+<ul>
+<li><strong>Onboarding</strong>: Provide a public form where legal guardians can onboard themselves and their associated patients without requiring authentication.</li>
+<li><strong>Data Management</strong>: Enable the administration of contacts, patients, and relationships through a backoffice tool.</li>
+<li><strong>Longitudinal Data Collection</strong>: Facilitate the continuous collection of patient data over time via secure surveys linked to specific patients.</li>
+<li><strong>File Upload</strong>: Provide a secure mechanism for legal guardians to upload files, such as genetic reports, that are linked to patients.</li>
+<li><strong>User Management</strong>: Leverage the Microsoft 365 ecosystem for authentication and authorization, ensuring that all user access is managed securely.</li>
+<li><strong>Security &amp; Compliance</strong>: Ensure the system complies with GDPR and maintains high standards for data encryption and protection.</li>
+</ul>
+
+<hr />
+
+<h2>Key Functional Areas</h2>
+
+<h3>1. Public Onboarding</h3>
+
+<p>The onboarding form is publicly accessible and allows contacts (legal guardians) to register themselves and the patients under their care. No authentication is required to complete the form, and all submissions are stored in a staging database for review before final entry into the master database.</p>
+
+<ul>
+<li><p><strong>Fields Collected</strong>:</p>
+
+<ul>
+<li>Contact: Full Name, Email, Mobile, Country, State, Relationship to Patient</li>
+<li>Patient: Full Name, Date of Birth, Gender, MECP2 Mutation (or clinical diagnosis)</li>
+</ul></li>
+<li><p><strong>Data Flow</strong>: Submissions are first stored in the staging database and validated before being moved to the master database.</p></li>
+</ul>
+
+<p><img src="./images/onboarding-process.png" alt="Onboarding process" /></p>
+
+<h3>2. Staging Database and Data Processing</h3>
+
+<p>The staging database temporarily stores data from the onboarding form. Data must be validated (e.g., deduplication checks) before being moved to the master database, which contains the primary records for contacts, patients, and their relationships.</p>
+
+<ul>
+<li><strong>Processing Workflow</strong>: Data validation, deduplication, and transfer to the master database.</li>
+</ul>
+
+<h3>3. Master Data</h3>
+
+<p>The master database contains all validated records of contacts, patients, and their relationships. Relationships define the connections between contacts (e.g., legal guardians) and patients (e.g., mother, father, legal guardian).</p>
+
+<ul>
+<li><strong>Entities</strong>: 
+<ul>
+<li>Contacts: Legal guardians or caregivers.</li>
+<li>Patients: Individuals diagnosed with Rett Syndrome.</li>
+<li>Relationships: Connections between contacts and patients.</li>
+</ul></li>
+</ul>
+
+<h3>4. Backoffice Application (CRUD)</h3>
+
+<p>The backoffice application allows administrators to perform full CRUD operations on contacts, patients, and their relationships. It includes list views, search functionality, and allows for adding, updating, and deleting records.</p>
+
+<ul>
+<li><strong>Functionalities</strong>:
+<ul>
+<li>CRUD operations for contacts, patients, and relationships.</li>
+<li>List and search features for managing data.</li>
+</ul></li>
+</ul>
+
+<h3>5. Longitudinal Data Collection</h3>
+
+<p>The registry supports the collection of longitudinal data by allowing administrators to send surveys to contacts at different intervals. Each survey is linked to the corresponding patient through a secure, tokenized system, ensuring data integrity.</p>
+
+<ul>
+<li><strong>Process</strong>:
+<ul>
+<li>Select a subset of patients.</li>
+<li>Generate private links using individual tokens.</li>
+<li>Send email notifications to contacts with unique links.</li>
+<li>Process survey responses and associate them with the correct patient.</li>
+</ul></li>
+</ul>
+
+<p><img src="./images/survey-data-gathering.png" alt="Logitudinal Data" /></p>
+
+<h3>6. Secure File Upload</h3>
+
+<p>The system includes a secure file upload feature where legal guardians can upload files (e.g., genetic reports) using a private, token-based link. These files are securely stored and linked to the appropriate patient, ensuring GDPR compliance.</p>
+
+<ul>
+<li><strong>File Linking</strong>: Each uploaded file is associated with a patient and stored securely in an encrypted environment.</li>
+</ul>
+
+<h3>7. User Management (Microsoft 365 Integration)</h3>
+
+<p>All user management is handled through the Microsoft 365 ecosystem, ensuring that only authorized personnel within the organization can access the system. The system uses Single Sign-On (SSO) and Role-Based Access Control (RBAC) for managing user permissions.</p>
+
+<ul>
+<li><strong>Roles</strong>: Admin, Data Manager, Viewer.</li>
+<li><strong>Authentication</strong>: Handled via Microsoft Azure AD and SSO.</li>
+</ul>
+
+<h3>8. Security and GDPR Compliance</h3>
+
+<p>The system is fully compliant with GDPR regulations, ensuring that all personal and sensitive data is protected. Explicit consent is required from contacts when submitting data or uploading files. The system uses encryption for data both at rest and in transit.</p>
+
+<ul>
+<li><strong>Security Features</strong>:
+<ul>
+<li>Data encryption (at rest and in transit).</li>
+<li>Role-based access control.</li>
+<li>GDPR-compliant consent management.</li>
+</ul></li>
+</ul>
+
+<h3>9. Reporting and Analytics</h3>
+
+<p>The system integrates with reporting tools like PowerBI to allow administrators to generate detailed reports on patient demographics, mutation data, and longitudinal trends. All reports are anonymized to ensure privacy.</p>
+
+<ul>
+<li><strong>Capabilities</strong>:
+<ul>
+<li>Anonymized reporting.</li>
+<li>Exporting data for external analysis.</li>
+</ul></li>
+</ul>
+</body></html>
