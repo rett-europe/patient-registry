@@ -85,3 +85,4 @@ The system integrates with reporting tools like PowerBI to allow administrators 
 - **Capabilities**:
   - Anonymized reporting.
   - Exporting data for external analysis.
+
