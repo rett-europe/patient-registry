@@ -7,6 +7,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -47,8 +50,13 @@ jobs:
             python convert_md_to_html.py "$file" "docs/${name}.html"
           done
 
+      - name: Disable Jekyll
+        run: touch docs/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
+          publish_branch: gh-pages
+          destination_dir: .
