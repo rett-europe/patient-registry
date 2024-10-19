@@ -1,0 +1,39 @@
+name: Convert Markdown to HTML and Deploy to GitHub Pages
+
+on:
+  push:
+    paths:
+      - '**.md'   # Trigger only when markdown files are updated
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install markdown2
+
+      - name: Convert Markdown to HTML
+        run: |
+          for file in docs/*.md; do
+            filename=$(basename -- "$file")
+            name="${filename%.*}"
+            python -c "import markdown2, os; input_file='$file'; output_file=f'docs/{name}.html'; markdown_content=open(input_file, 'r').read(); css_link='<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">'; html_content=f'<html><head>{css_link}</head><body>' + markdown2.markdown(markdown_content) + '</body></html>'; open(output_file, 'w').write(html_content)"
+          done
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
