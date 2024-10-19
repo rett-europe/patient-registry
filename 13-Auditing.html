@@ -1,0 +1,139 @@
+<html><head><link rel="stylesheet" type="text/css" href="style.css"></head><body><h1>13. Auditing and Compliance</h1>
+
+<p>To ensure regulatory compliance and data integrity, the Rett Syndrome Patient Registry maintains a comprehensive auditing system. All actions related to data submission, file uploads, user access, backoffice operations, OpenAI processing, and doctor validation are logged, providing full traceability and accountability.</p>
+
+<hr />
+
+<h2>Key Auditing Features</h2>
+
+<h3>1. <strong>Survey Responses</strong></h3>
+
+<ul>
+<li>Every survey submission is logged with the following information:
+<ul>
+<li>Contact's identity (verified through token and/or two-factor authentication).</li>
+<li>Patient associated with the submission.</li>
+<li>Timestamp of the submission.</li>
+<li>Details of the survey completed.</li>
+<li>Authentication logs (2FA verification if used).</li>
+</ul></li>
+<li><strong>Immutable Logs</strong>: Once a survey is submitted, all related logs are stored in an immutable format to ensure they meet regulatory requirements.</li>
+</ul>
+
+<h3>2. <strong>File Uploads and Data Processing</strong></h3>
+
+<ul>
+<li>For every file uploaded by a contact, the audit trail records:
+<ul>
+<li>Contact identity (verified through token or 2FA).</li>
+<li>The patient to whom the file is linked.</li>
+<li>File type, upload timestamp, and extraction status.</li>
+<li>Details of the extracted data (e.g., MECP2 mutation) and the file's deletion status.</li>
+</ul></li>
+<li><strong>Processing Logs</strong>: OpenAI processing is logged to track:
+<ul>
+<li>When the file was processed.</li>
+<li>What data was extracted.</li>
+<li>The deletion of the original file after processing is completed.</li>
+</ul></li>
+</ul>
+
+<h3>3. <strong>Doctor Review and Validation</strong></h3>
+
+<ul>
+<li>When a doctor is requested to validate a diagnosis based on an uploaded report, the audit trail captures:
+<ul>
+<li>The identity of the doctor accessing the report.</li>
+<li>The timestamp when the report was accessed.</li>
+<li>Any diagnosis validation or notes provided by the doctor.</li>
+<li>Confirmation that the validation or feedback has been stored in the system.</li>
+</ul></li>
+</ul>
+
+<h3>4. <strong>Backoffice Operations</strong></h3>
+
+<ul>
+<li>All CRUD operations performed by administrators are logged, including:
+<ul>
+<li>Administrator's identity.</li>
+<li>Action performed (e.g., create, update, delete).</li>
+<li>Entity involved (contact, patient, relationship).</li>
+<li>Timestamp of the action.</li>
+</ul></li>
+<li><strong>Access Logs</strong>: Every login or access to the backoffice system is logged, including:
+<ul>
+<li>User identity.</li>
+<li>Timestamp of access.</li>
+<li>Success or failure of login attempts.</li>
+</ul></li>
+</ul>
+
+<h3>5. <strong>User Access and Management</strong></h3>
+
+<ul>
+<li><strong>Login Events</strong>: Every login event is tracked, logging:
+<ul>
+<li>User's identity.</li>
+<li>Login timestamp.</li>
+<li>Authentication status (success or failure).</li>
+</ul></li>
+<li><strong>Role Changes</strong>: Any modifications to user roles are logged, including:
+<ul>
+<li>User who made the change.</li>
+<li>User whose role was changed.</li>
+<li>Timestamp of the role modification.</li>
+</ul></li>
+<li><strong>Activity Logs</strong>: Every action taken by administrators or other authorized users is logged to ensure full accountability.</li>
+</ul>
+
+<h3>6. <strong>Report Generation and Exports</strong></h3>
+
+<ul>
+<li><strong>Report Logs</strong>: Every time a report is generated, the following information is logged:
+<ul>
+<li>User who generated the report.</li>
+<li>Date and time of the report generation.</li>
+<li>Type of report (e.g., patient demographics, mutation data).</li>
+<li>Whether the report was exported (e.g., to CSV or PowerBI).</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2>Regulatory Compliance</h2>
+
+<p>The auditing system is designed to ensure full compliance with various regulations, including:
+- <strong>GDPR</strong>: All access and data management actions are logged, ensuring that data processing is transparent and auditable.
+- <strong>HIPAA</strong> (if applicable): All interactions with patient data are logged and protected, ensuring compliance with healthcare-related regulations.
+- <strong>Consent Tracking</strong>: For all sensitive actions (e.g., data submission, file uploads), consent logs are maintained to prove compliance with privacy laws.</p>
+
+<hr />
+
+<h2>Data Security for Audit Logs</h2>
+
+<ul>
+<li><strong>Immutable Logs</strong>: Audit logs are immutable, meaning they cannot be altered or deleted.</li>
+<li><strong>Encryption</strong>: All audit logs are encrypted both at rest and in transit to ensure they are securely stored.</li>
+<li><strong>Access Control</strong>: Only authorized personnel with specific auditing privileges can view or generate audit reports.</li>
+<li><strong>Regular Backups</strong>: Audit logs are backed up regularly to prevent data loss and ensure availability during audits.</li>
+</ul>
+
+<hr />
+
+<h2>Data Retention Policies</h2>
+
+<ul>
+<li>Audit logs are retained for a period specified by regulatory requirements (e.g., GDPR, HIPAA).</li>
+<li>After the retention period, logs may be archived but will remain accessible for legal or regulatory audits.</li>
+<li>All audit data will be securely deleted after the legally required retention period if no further use is mandated.</li>
+</ul>
+
+<hr />
+
+<h2>Audit Review and Reporting</h2>
+
+<ul>
+<li><strong>Audit Reports</strong>: Administrators or authorized personnel can generate detailed audit reports to review all activities, ensuring compliance.</li>
+<li><strong>External Review</strong>: The system supports exporting audit logs for review by external auditors or regulatory bodies.</li>
+</ul>
+</body></html>

@@ -1,0 +1,33 @@
+<html><head><link rel="stylesheet" type="text/css" href="style.css"></head><body><h1>3. Staging Database</h1>
+
+<p>The Staging Database serves as a temporary storage layer for all data submitted through the Public Onboarding Form. This layer allows administrators to review and validate the data before transferring it to the master dataset.</p>
+
+<h2>Purpose</h2>
+
+<ul>
+<li>To ensure data quality by allowing for manual or automated validation steps.</li>
+<li>To temporarily store information on contacts and patients before their final inclusion in the master dataset.</li>
+<li>To allow for deduplication and verification of data entries.</li>
+</ul>
+
+<h2>Data Flow</h2>
+
+<ol>
+<li>Form submissions from the Public Onboarding Form are automatically persisted in the Staging Database.</li>
+<li>Data remains in the Staging Database until it is processed into the RettDB data model.</li>
+<li>Once data is validated and confirmed, it is transferred into the master database, where it becomes part of the main dataset.</li>
+</ol>
+
+<h2>Data Validation</h2>
+
+<ul>
+<li>Validation steps can include checking for duplicate records (e.g., patients with the same name and birthdate) and verifying the integrity of the provided MECP2 mutation data.</li>
+<li>Administrators can review submissions through the backoffice interface before finalizing the transfer.</li>
+</ul>
+
+<h2>Data Retention</h2>
+
+<ul>
+<li>Data in the Staging Database is retained until reviewed and processed. After processing, staging data can be either archived or deleted, based on retention policies.</li>
+</ul>
+</body></html>

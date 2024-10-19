@@ -1,0 +1,34 @@
+<html><head><link rel="stylesheet" type="text/css" href="style.css"></head><body><h1>4. Processing Data</h1>
+
+<p>The process of moving data from the Staging Database to the Master Data is handled via an internal GUI tool that allows administrators to validate and review submissions.</p>
+
+<h2>Data Review</h2>
+
+<ul>
+<li>Administrators access the Staging Database through an internal tool that displays pending submissions.</li>
+<li>Each submission is reviewed to ensure all required fields are present and accurate.</li>
+<li>Data related to contacts and patients is validated, including checks for duplicates and data consistency.</li>
+</ul>
+
+<h2>Transfer to Master Database</h2>
+
+<ul>
+<li>Once validated, the data is processed into the RettDB data model.</li>
+<li>For each submission, contact and patient records are created or updated in the master database.</li>
+<li>Relationships between contacts and patients are established (e.g., mother-daughter, legal guardian, etc.).</li>
+</ul>
+
+<h2>Logic for Managing Data</h2>
+
+<ul>
+<li><strong>Duplication Check</strong>: During the processing phase, checks are performed to prevent duplicate patients or contacts from being added.</li>
+<li><strong>Relationship Management</strong>: The system ensures that relationships between contacts and patients are correctly established, with the possibility of one contact being linked to multiple patients and vice versa.</li>
+</ul>
+
+<h2>Error Handling</h2>
+
+<ul>
+<li>In case of validation errors (e.g., missing required fields, invalid data), submissions can be flagged for further review.</li>
+<li>Administrators can request more information from the contact before completing the data transfer.</li>
+</ul>
+</body></html>

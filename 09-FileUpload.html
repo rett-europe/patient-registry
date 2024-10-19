@@ -1,0 +1,76 @@
+<html><head><link rel="stylesheet" type="text/css" href="style.css"></head><body><h1>9. File Upload Feature</h1>
+
+<p>The file upload feature allows contacts to securely upload files (such as genetic reports) associated with specific patients. To minimize storage and improve data processing, OpenAI is integrated to extract key information from the files. Additionally, a doctor can be requested to validate the diagnosis by analyzing the report, ensuring that both automated and expert validation processes are applied.</p>
+
+<hr />
+
+<h2>Workflow</h2>
+
+<ol>
+<li><p><strong>Token-Based Links</strong></p>
+
+<ul>
+<li>Each contact receives an individual token (unique link) via email, which is associated with a specific patient.</li>
+<li>The token is used to access the file upload page, ensuring that the file is securely linked to the correct patient.</li>
+</ul></li>
+<li><p><strong>Secure Upload</strong></p>
+
+<ul>
+<li>Contacts can upload files (e.g., genetic reports) through a secure form.</li>
+<li>File types can include PDFs, images, or any other supported format.</li>
+<li>The file upload form does not require login, only the token for authentication.</li>
+</ul></li>
+<li><p><strong>OpenAI Integration for Key Data Extraction</strong></p>
+
+<ul>
+<li>Once the file is uploaded, OpenAI is used to extract key information such as:
+<ul>
+<li>MECP2 mutation data.</li>
+<li>Patient demographics.</li>
+<li>Relevant medical details.</li>
+</ul></li>
+<li>This extracted data is structured and normalized before being stored in the database.</li>
+<li>The goal is to minimize the amount of raw data stored by only saving the extracted, relevant information.</li>
+</ul></li>
+<li><p><strong>Temporary File Storage</strong></p>
+
+<ul>
+<li>Uploaded files are stored temporarily while OpenAI processes them.</li>
+<li>Once the key data is extracted, the files are securely deleted from the system to avoid long-term storage.</li>
+<li>A retention policy ensures that files are only kept for the minimum time required for processing.</li>
+</ul></li>
+<li><p><strong>Doctor Review and Validation</strong></p>
+
+<ul>
+<li>After OpenAI extracts the key data, the system can notify a designated doctor to review and validate the diagnosis.</li>
+<li>The doctor receives a secure, token-based link to access the patient’s report and the extracted data.</li>
+<li>The doctor reviews the report, analyzes the provided diagnostic information, and can validate or add comments to the diagnosis.</li>
+<li>The doctor’s validation is securely logged and linked to the patient’s record in the database.</li>
+</ul></li>
+<li><p><strong>Data Linking</strong></p>
+
+<ul>
+<li>The extracted data, along with any validation from the doctor, is linked to the appropriate patient in the master database.</li>
+<li>Only the essential extracted information and doctor’s validation are stored, ensuring that database size is minimized.</li>
+</ul></li>
+<li><p><strong>GDPR Compliance</strong></p>
+
+<ul>
+<li>The file upload, data extraction, and validation processes adhere to GDPR standards.</li>
+<li>Contacts must give explicit consent before uploading files.</li>
+<li>Files and extracted data are encrypted both at rest and in transit, and unnecessary data is securely deleted after processing.</li>
+</ul></li>
+</ol>
+
+<hr />
+
+<h2>Key Advantages</h2>
+
+<ul>
+<li><strong>Automated Data Extraction</strong>: Using OpenAI to process files ensures that key information is extracted efficiently and stored in a structured format.</li>
+<li><strong>Expert Validation</strong>: By involving a doctor in the validation process, the system ensures that diagnoses are accurate and reviewed by a medical expert.</li>
+<li><strong>Minimized Storage</strong>: By extracting only key information and deleting the original files, the system avoids long-term file storage.</li>
+<li><strong>Improved Efficiency</strong>: OpenAI reduces manual data entry, while doctors ensure the accuracy and validation of the extracted data.</li>
+<li><strong>GDPR Compliance</strong>: The process is fully compliant with data protection laws, ensuring privacy and security for sensitive patient data.</li>
+</ul>
+</body></html>

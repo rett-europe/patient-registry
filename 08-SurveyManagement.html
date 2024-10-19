@@ -1,0 +1,70 @@
+<html><head><link rel="stylesheet" type="text/css" href="style.css"></head><body><h1>8. Survey Management</h1>
+
+<p>The Survey Management system facilitates the distribution of surveys to contacts associated with patients in the Rett Syndrome Patient Registry. To meet regulatory requirements, it includes a mechanism that guarantees surveys are answered by the designated contact, ensuring the integrity of the data collected.</p>
+
+<h2>Survey Creation</h2>
+
+<ul>
+<li>Surveys are created by administrators to collect data over time, such as health updates or new genetic information.</li>
+<li>Surveys can cover a wide range of topics and are designed to collect longitudinal data that can be linked to specific patients.</li>
+</ul>
+
+<h2>Patient Targeting</h2>
+
+<ul>
+<li>Administrators can select a subset of patients from the master database to receive specific surveys.</li>
+<li>The system allows filtering based on criteria such as age, mutation type, or previous survey responses.</li>
+</ul>
+
+<h2>Token-Based Survey Distribution</h2>
+
+<ul>
+<li>For each selected patient, the system generates a unique token tied to the contact associated with the patient.</li>
+<li>This token is used to create a private, one-time link for the survey, ensuring that only the designated contact can submit a response.</li>
+</ul>
+
+<h2>Contact Authentication and Verification</h2>
+
+<p>To comply with regulatory requirements, the system includes a mechanism to verify that the survey is completed by the designated contact:</p>
+
+<ol>
+<li><p><strong>Token Verification</strong>: </p>
+
+<ul>
+<li>The survey link is unique to each contact-patient pair and can only be used once. Each link contains an embedded token that is verified before the survey is opened.</li>
+</ul></li>
+<li><p><strong>Two-Factor Authentication (2FA)</strong>:</p>
+
+<ul>
+<li>Before completing the survey, the contact is required to verify their identity using a second factor of authentication (2FA), such as an SMS code or authentication app.</li>
+<li>This ensures that only the authorized contact can access and complete the survey.</li>
+</ul></li>
+<li><p><strong>Audit Trail</strong>:</p>
+
+<ul>
+<li>The system records a detailed audit trail for each survey submission, including the identity of the contact who submitted the survey, the timestamp, and any authentication steps completed.</li>
+<li>This guarantees compliance with regulatory requirements and provides accountability for the data submitted.</li>
+</ul></li>
+<li><p><strong>Consent Confirmation</strong>:</p>
+
+<ul>
+<li>Each contact must confirm their consent before submitting the survey, ensuring compliance with privacy regulations such as GDPR.</li>
+</ul></li>
+</ol>
+
+<h2>Survey Response Processing</h2>
+
+<ul>
+<li>Once the survey is submitted, the response is securely stored in the database.</li>
+<li>Each response is linked to the corresponding patient, enabling longitudinal tracking of the patient’s condition or genetic information.</li>
+<li>Data is stored securely and is accessible only to authorized administrators.</li>
+</ul>
+
+<h2>Data Security and Privacy</h2>
+
+<ul>
+<li>All survey responses are encrypted both in transit and at rest.</li>
+<li>The system adheres to GDPR and other regulatory requirements for data protection, ensuring that sensitive patient and contact information is handled with care.</li>
+<li>Contact authentication ensures that responses are submitted only by verified individuals, protecting the integrity of the collected data.</li>
+</ul>
+</body></html>

@@ -1,0 +1,44 @@
+<html><head><link rel="stylesheet" type="text/css" href="style.css"></head><body><h1>5. Master Data</h1>
+
+<p>The Master Data section covers the main data structure for contacts, patients, and relationships. This database represents the final version of validated records.</p>
+
+<h2>Data Structure</h2>
+
+<ul>
+<li><strong>Contacts</strong>: Stores information related to legal guardians, caregivers, or individuals who are responsible for patients.</li>
+<li><strong>Patients</strong>: Contains details about the patients with Rett Syndrome, including genetic information, demographics, and medical history.</li>
+<li><strong>Relationships</strong>: Captures the relationships between contacts and patients, such as "mother", "father", or "legal guardian".</li>
+</ul>
+
+<h2>Data Fields</h2>
+
+<h3>Contacts</h3>
+
+<ul>
+<li>Contact UUID</li>
+<li>Full Name</li>
+<li>Email</li>
+<li>Mobile Number (Optional)</li>
+<li>Country</li>
+<li>State (Depends on the country)</li>
+</ul>
+
+<h3>Patients</h3>
+
+<ul>
+<li>Patient UUID</li>
+<li>Full Name</li>
+<li>Date of Birth</li>
+<li>Gender</li>
+<li>MECP2 Mutation or Clinical Diagnosis</li>
+</ul>
+
+<h3>Relationships</h3>
+
+<ul>
+<li>Relationship UUID</li>
+<li>Contact UUID</li>
+<li>Patient UUID</li>
+<li>Relationship Type (e.g., "Mother", "Father", "Legal Guardian")</li>
+</ul>
+</body></html>

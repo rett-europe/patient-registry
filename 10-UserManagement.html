@@ -1,0 +1,97 @@
+<html><head><link rel="stylesheet" type="text/css" href="style.css"></head><body><h1>10. User Management</h1>
+
+<p>This section outlines the user management process, which is integrated with the Microsoft ecosystem to ensure secure and centralized control of access to the system.</p>
+
+<hr />
+
+<h2>Microsoft 365 Integration</h2>
+
+<ul>
+<li><strong>Authentication</strong>: The system uses Microsoft 365 accounts to authenticate administrators, doctors, and users with access to sensitive data.</li>
+<li><strong>Azure AD</strong>: All user accounts are managed via Azure Active Directory (Azure AD), allowing for centralized management of roles and permissions.</li>
+<li><strong>Single Sign-On (SSO)</strong>: Users can log in using their Microsoft credentials, streamlining access through Single Sign-On (SSO) functionality.</li>
+</ul>
+
+<hr />
+
+<h2>Role-Based Access Control (RBAC)</h2>
+
+<ul>
+<li><strong>Roles</strong>: Users are assigned specific roles, including Admin, Data Manager, Viewer, and Doctor, based on their responsibilities.</li>
+</ul>
+
+<h3>Permissions by Role:</h3>
+
+<ul>
+<li><p><strong>Admin</strong>: </p>
+
+<ul>
+<li>Full access to CRUD operations on contacts, patients, relationships, and longitudinal data.</li>
+<li>Manage users and roles, including provisioning new users.</li>
+</ul></li>
+<li><p><strong>Data Manager</strong>: </p>
+
+<ul>
+<li>Can access and manage patient and contact information but cannot modify user roles or access sensitive data like genetic reports.</li>
+</ul></li>
+<li><p><strong>Viewer</strong>: </p>
+
+<ul>
+<li>Can view reports and data but cannot modify or delete any records.</li>
+</ul></li>
+<li><p><strong>Doctor</strong>:</p>
+
+<ul>
+<li>Can securely access and review patient reports uploaded by contacts.</li>
+<li>Responsible for validating diagnoses based on genetic reports.</li>
+<li>Can add comments or approve/reject diagnosis, which is logged in the system.</li>
+<li>No access to administrative or management functions (CRUD operations).</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h3>User Provisioning</h3>
+
+<ul>
+<li><strong>Admins</strong> can provision new users within Azure AD by assigning them roles and permissions as required.</li>
+<li>Users can be easily managed within Azure AD, including setting up doctors and other key personnel for review and validation of patient data.</li>
+</ul>
+
+<hr />
+
+<h2>Security</h2>
+
+<ul>
+<li><p><strong>Microsoft Compliance</strong>: Using Microsoft 365 and Azure AD ensures that the system leverages Microsoft’s built-in security measures, including two-factor authentication (2FA), conditional access policies, and compliance with industry standards.</p></li>
+<li><p><strong>Activity Logging</strong>: All user actions within the backoffice and validation processes are logged for audit purposes, ensuring traceability and accountability. This includes:</p>
+
+<ul>
+<li>Doctor actions related to reviewing and validating diagnoses.</li>
+<li>Access to sensitive patient reports and genetic data.</li>
+<li>OpenAI processing logs for actions performed by automated systems under specific roles.</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h3>Doctor Role Integration:</h3>
+
+<p>By adding the <strong>Doctor</strong> role, the system allows healthcare professionals to securely access, review, and validate patient diagnoses based on uploaded genetic reports. The doctor’s actions are limited to reviewing and validating reports, while any modification or validation is tracked and logged for compliance purposes.</p>
+
+<ul>
+<li><p><strong>Doctor Access</strong>: </p>
+
+<ul>
+<li>Doctors can only view and validate reports assigned to them through the secure link.</li>
+<li>Their access is logged, including timestamp and report review details, ensuring full traceability.</li>
+<li>They cannot perform any other system operations (CRUD on patients, contacts, etc.).</li>
+</ul></li>
+<li><p><strong>Doctor Validation Process</strong>: </p>
+
+<ul>
+<li>Once the doctor reviews the uploaded report, they can validate the diagnosis, which is logged and stored in the system.</li>
+<li>The validation is then available to administrators or data managers for further action, such as updating patient information or preparing reports.</li>
+</ul></li>
+</ul>
+</body></html>
