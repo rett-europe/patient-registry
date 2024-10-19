@@ -3,7 +3,7 @@ name: Convert Markdown to HTML and Deploy to GitHub Pages
 on:
   push:
     paths:
-      - 'docs/**'  # Trigger when any files in the docs folder are updated
+      - 'docs/**'
     branches:
       - main
 
@@ -32,12 +32,35 @@ jobs:
           cat << 'EOF' > convert_md_to_html.py
           import sys
           import markdown2
+          import os
+          import re
+
           input_file = sys.argv[1]
           output_file = sys.argv[2]
+
+          # Read Markdown content
           with open(input_file, 'r') as f:
               markdown_content = f.read()
-          css_link = '<link rel="stylesheet" type="text/css" href="style.css">'
-          html_content = f'<html><head>{css_link}</head><body>' + markdown2.markdown(markdown_content) + '</body></html>'
+
+          # Convert Markdown to HTML
+          body_content = markdown2.markdown(markdown_content)
+
+          # Read the HTML template
+          with open('template.html', 'r') as f:
+              template = f.read()
+
+          # Extract title from the first heading in Markdown
+          match = re.search(r'^#\s+(.*)', markdown_content, re.MULTILINE)
+          if match:
+              title = match.group(1)
+          else:
+              title = os.path.basename(input_file)
+
+          # Replace placeholders in the template
+          html_content = template.replace('{{ content }}', body_content)
+          html_content = html_content.replace('{{ title }}', title)
+
+          # Write the output HTML file
           with open(output_file, 'w') as f:
               f.write(html_content)
           EOF
