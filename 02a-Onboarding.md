@@ -1,5 +1,10 @@
 # 2a. Onboarding Process to Guarantee Valid Emails
 
+By enforcing email verification before allowing any actions like, we ensure that:
+ * **Data Integrity**: Only verified participants can submit information, which adds credibility and trustworthiness to the data.
+ * **Audit Trail**: You have a clear, documented trail of actions, starting from email verification, through to submission, which is essential for regulatory compliance and future audits.
+ * **Security**: Email verification minimizes the risk of unauthorized submissions or malicious uploads, making sure that each interaction is tied to a verified user.
+
 ## Process to Validate Email
 
 The email validation process ensures that the legal guardian's email address is verified before accessing further steps in the system. Upon submitting the initial form with the required details (e.g., email and name), the system sends a magic link to the provided email address.
