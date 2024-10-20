@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2a. Onboarding Process to Guarantee Valid Emails</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <nav>
+        <!-- Logo -->
+        <a href="https://www.rettsyndrome.eu/">
+            <img src="https://www.rettsyndrome.eu/wp-content/uploads/2020/01/cropped-cropped-LogoRSEshort.png" alt="Rett Syndrome Logo" class="logo">
+        </a>
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a href="index.html">Return Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+    <h1>2a. Onboarding Process to Guarantee Valid Emails</h1>
+
+<h2>Process to Validate Email</h2>
+
+<p>The email validation process ensures that the legal guardian's email address is verified before accessing further steps in the system. Upon submitting the initial form with the required details (e.g., email and name), the system sends a magic link to the provided email address.</p>
+
+<ol>
+<li>The legal guardian submits the form with their email.</li>
+<li>The system stores the information in the database and sends a magic link via email.</li>
+<li>The legal guardian clicks the magic link, which redirects them to the verification page.</li>
+<li>The system verifies the token associated with the magic link and updates the database.</li>
+<li>If valid, the legal guardian is granted access.</li>
+</ol>
+
+<pre><code>sequenceDiagram
+    participant LegalGuardian
+    participant LandingPage
+    participant EmailService
+    participant Database
+
+    LegalGuardian-&gt;&gt;LandingPage: Submit form (email, name, etc.)
+    LandingPage-&gt;&gt;Database: Store user info (email, name, etc.)
+    LandingPage-&gt;&gt;EmailService: Send magic link email
+    EmailService-&gt;&gt;LegalGuardian: Magic link email sent
+
+    LegalGuardian-&gt;&gt;EmailService: Click on magic link
+    EmailService-&gt;&gt;LandingPage: Redirect with token
+    LandingPage-&gt;&gt;Database: Validate token
+    Database-&gt;&gt;LandingPage: Token valid
+    LandingPage-&gt;&gt;LegalGuardian: Access granted (verified)
+</code></pre>
+
+<h2>Process to update email</h2>
+
+<p>This process allows a legal guardian to update their email address by submitting both their current and new emails. Verification of both the current and new emails ensures the legitimacy of the request.</p>
+
+<ol>
+<li>The legal guardian submits their current and new email addresses.</li>
+<li>The system sends a verification link to the current email address.</li>
+<li>The legal guardian clicks the link in the current email to confirm the request.</li>
+<li>The system then sends a verification link to the new email address.</li>
+<li>The legal guardian verifies the new email by clicking the link.</li>
+</ol>
+
+<p>Upon successful verification, the system updates the email in the database and notifies both the old and new email addresses of the change.</p>
+
+<pre><code>sequenceDiagram
+    participant LegalGuardian
+    participant LandingPage
+    participant EmailService
+    participant Database
+
+    LegalGuardian-&gt;&gt;LandingPage: Submit current and new email
+    LandingPage-&gt;&gt;EmailService: Send verification to current email
+    EmailService-&gt;&gt;LegalGuardian: Email verification link to current email
+
+    LegalGuardian-&gt;&gt;EmailService: Click on current email magic link
+    EmailService-&gt;&gt;LandingPage: Verify current email link
+    LandingPage-&gt;&gt;EmailService: Send verification to new email
+    EmailService-&gt;&gt;LegalGuardian: Email verification link to new email
+
+    LegalGuardian-&gt;&gt;EmailService: Click on new email magic link
+    EmailService-&gt;&gt;LandingPage: Verify new email link
+    LandingPage-&gt;&gt;Database: Update email in database
+    Database-&gt;&gt;LandingPage: Confirm email updated
+    LandingPage-&gt;&gt;EmailService: Send notification to new email and current email
+
+    LandingPage-&gt;&gt;LegalGuardian: Email successfully updated
+</code></pre>
+
+</body>
+</html>
