@@ -29,6 +29,8 @@ sequenceDiagram
     LandingPage->>LegalGuardian: Access granted (verified)
 ```
 
+![Email verification process](./images/email-verification.png)
+
 ## Process to update email
 
 This process allows a legal guardian to update their email address by submitting both their current and new emails. Verification of both the current and new emails ensures the legitimacy of the request.
@@ -65,3 +67,5 @@ sequenceDiagram
 
     LandingPage->>LegalGuardian: Email successfully updated
 ```
+
+![Email update process](./images/email-update.png)
