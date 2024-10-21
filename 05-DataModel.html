@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>5. Master Data</title>
+    <title>5. Data model</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
             <a href="contact.html">Contact</a>
         </div>
     </nav>
-    <h1>5. Master Data</h1>
+    <h1>5. Data model</h1>
 
 <p>The Master Data section covers the main data structure for contacts, patients, and relationships. This database represents the final version of validated records.</p>
 
@@ -49,7 +49,6 @@
         date Date_of_Birth
         string Gender
         string MECP2_Mutation_Clinical_Diagnosis
-        string Country_Code
     }
 
     Relationships {
@@ -82,7 +81,6 @@
     Relationships ||--|| Relationship_Types : "uses"
     Contacts }o--|| Countries : "located in"
     Contacts }o--|| States : "state located in"
-    Patients }o--|| Countries : "located in"
     States }o--|| Countries : "belongs to"
 </code></pre>
 
