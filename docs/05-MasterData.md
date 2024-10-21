@@ -28,3 +28,33 @@ The Master Data section covers the main data structure for contacts, patients, a
 - Contact UUID
 - Patient UUID
 - Relationship Type (e.g., "Mother", "Father", "Legal Guardian")
+
+```mermaid
+erDiagram
+    Contacts {
+        UUID Contact_UUID
+        string Full_Name
+        string Email
+        string Mobile_Number
+        string Country
+        string State
+    }
+
+    Patients {
+        UUID Patient_UUID
+        string Full_Name
+        date Date_of_Birth
+        string Gender
+        string MECP2_Mutation_Clinical_Diagnosis
+    }
+
+    Relationships {
+        UUID Relationship_UUID
+        UUID Contact_UUID
+        UUID Patient_UUID
+        string Relationship_Type
+    }
+
+    Contacts ||--o{ Relationships: "has"
+    Patients ||--o{ Relationships: "related to"
+```
