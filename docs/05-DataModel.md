@@ -1,4 +1,4 @@
-# 5. Master Data
+# 5. Data model
 
 The Master Data section covers the main data structure for contacts, patients, and relationships. This database represents the final version of validated records.
 
@@ -28,7 +28,6 @@ erDiagram
         date Date_of_Birth
         string Gender
         string MECP2_Mutation_Clinical_Diagnosis
-        string Country_Code
     }
 
     Relationships {
@@ -61,7 +60,6 @@ erDiagram
     Relationships ||--|| Relationship_Types : "uses"
     Contacts }o--|| Countries : "located in"
     Contacts }o--|| States : "state located in"
-    Patients }o--|| Countries : "located in"
     States }o--|| Countries : "belongs to"
 ```
 
