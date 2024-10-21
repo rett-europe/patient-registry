@@ -33,46 +33,57 @@
 
 <pre><code>erDiagram
     Contacts {
-        UUID Contact_UUID
+        UUID Contact_UUID PK "Primary identifier for the contact"
         string Full_Name
-        string Email
+        string Email "Contact's email address"
         string Mobile_Number
         string Status
         string Consent_Status
-        string Country_Code
-        string State_Code
+        string Country_Code FK "Foreign key to Countries"
+        string State_Code FK "Foreign key to States"
+        string Preferred_Language
+        timestamp Created_At "Record creation timestamp"
+        timestamp Last_Updated_At "Record update timestamp"
+        boolean Email_Verified "Whether email has been verified"
+        text Notes
     }
 
     Patients {
-        UUID Patient_UUID
+        UUID Patient_UUID PK "Primary identifier for the patient"
+        string National_ID "National Identification Number - **Optional**"
         string Full_Name
         date Date_of_Birth
         string Gender
+        date Diagnosis_Date
         string MECP2_Mutation_Clinical_Diagnosis
+        boolean Deceased
+        date Death_Date "Optional"
+        timestamp Created_At
+        timestamp Last_Updated_At
     }
 
     Relationships {
-        UUID Relationship_UUID
-        UUID Contact_UUID
-        UUID Patient_UUID
-        int Relationship_Type_ID
+        UUID Relationship_UUID PK "Primary identifier for the relationship"
+        UUID Contact_UUID FK "Foreign key to Contacts"
+        UUID Patient_UUID FK "Foreign key to Patients"
+        int Relationship_Type_ID FK "Foreign key to Relationship_Types"
         string Relationship_Validity
     }
 
     Countries {
-        string Country_Code
+        string Country_Code PK "Primary key for Country"
         string Country_Name
         string Region
     }
 
     States {
-        string State_Code
+        string State_Code PK "Primary key for State"
         string State_Name
-        string Country_Code
+        string Country_Code FK "Foreign key to Countries"
     }
 
     Relationship_Types {
-        int Relationship_Type_ID
+        int Relationship_Type_ID PK "Primary key for Relationship Type"
         string Relationship_Type_Name
     }
 
