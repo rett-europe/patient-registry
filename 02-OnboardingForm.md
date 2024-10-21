@@ -14,6 +14,7 @@ The public onboarding form is the first step for contacts (legal guardians) to r
 - Mobile Number (Optional)
 - Country
 - State (Optional, depends on the country)
+- Are you a member of any local Rett Syndrome Association?
 - Relationship to Patient
 
 ### Patient Information
