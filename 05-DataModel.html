@@ -29,37 +29,7 @@
 <li><strong>Relationships</strong>: Captures the relationships between contacts and patients, such as "mother", "father", or "legal guardian".</li>
 </ul>
 
-<h2>Data Fields</h2>
-
-<h3>Contacts</h3>
-
-<ul>
-<li>Contact UUID</li>
-<li>Full Name</li>
-<li>Email</li>
-<li>Mobile Number (Optional)</li>
-<li>Country</li>
-<li>State (Depends on the country)</li>
-</ul>
-
-<h3>Patients</h3>
-
-<ul>
-<li>Patient UUID</li>
-<li>Full Name</li>
-<li>Date of Birth</li>
-<li>Gender</li>
-<li>MECP2 Mutation or Clinical Diagnosis</li>
-</ul>
-
-<h3>Relationships</h3>
-
-<ul>
-<li>Relationship UUID</li>
-<li>Contact UUID</li>
-<li>Patient UUID</li>
-<li>Relationship Type (e.g., "Mother", "Father", "Legal Guardian")</li>
-</ul>
+<h2>Data model</h2>
 
 <pre><code>erDiagram
     Contacts {
@@ -67,8 +37,10 @@
         string Full_Name
         string Email
         string Mobile_Number
-        string Country
-        string State
+        string Status
+        string Consent_Status
+        string Country_Code
+        string State_Code
     }
 
     Patients {
@@ -77,18 +49,44 @@
         date Date_of_Birth
         string Gender
         string MECP2_Mutation_Clinical_Diagnosis
+        string Country_Code
     }
 
     Relationships {
         UUID Relationship_UUID
         UUID Contact_UUID
         UUID Patient_UUID
-        string Relationship_Type
+        int Relationship_Type_ID
+        string Relationship_Validity
     }
 
-    Contacts ||--o{ Relationships: "has"
-    Patients ||--o{ Relationships: "related to"
+    Countries {
+        string Country_Code
+        string Country_Name
+        string Region
+    }
+
+    States {
+        string State_Code
+        string State_Name
+        string Country_Code
+    }
+
+    Relationship_Types {
+        int Relationship_Type_ID
+        string Relationship_Type_Name
+    }
+
+    Contacts ||--o{ Relationships : "has"
+    Patients ||--o{ Relationships : "related to"
+    Relationships ||--|| Relationship_Types : "uses"
+    Contacts }o--|| Countries : "located in"
+    Contacts }o--|| States : "state located in"
+    Patients }o--|| Countries : "located in"
+    States }o--|| Countries : "belongs to"
 </code></pre>
+
+<p><img src="./images/datamodel.png" alt="Database model" /></p>
 
 </body>
 </html>

@@ -7,27 +7,7 @@ The Master Data section covers the main data structure for contacts, patients, a
 - **Patients**: Contains details about the patients with Rett Syndrome, including genetic information, demographics, and medical history.
 - **Relationships**: Captures the relationships between contacts and patients, such as "mother", "father", or "legal guardian".
 
-## Data Fields
-### Contacts
-- Contact UUID
-- Full Name
-- Email
-- Mobile Number (Optional)
-- Country
-- State (Depends on the country)
-
-### Patients
-- Patient UUID
-- Full Name
-- Date of Birth
-- Gender
-- MECP2 Mutation or Clinical Diagnosis
-
-### Relationships
-- Relationship UUID
-- Contact UUID
-- Patient UUID
-- Relationship Type (e.g., "Mother", "Father", "Legal Guardian")
+## Data model
 
 ```mermaid
 erDiagram
@@ -36,8 +16,10 @@ erDiagram
         string Full_Name
         string Email
         string Mobile_Number
-        string Country
-        string State
+        string Status
+        string Consent_Status
+        string Country_Code
+        string State_Code
     }
 
     Patients {
@@ -46,15 +28,41 @@ erDiagram
         date Date_of_Birth
         string Gender
         string MECP2_Mutation_Clinical_Diagnosis
+        string Country_Code
     }
 
     Relationships {
         UUID Relationship_UUID
         UUID Contact_UUID
         UUID Patient_UUID
-        string Relationship_Type
+        int Relationship_Type_ID
+        string Relationship_Validity
     }
 
-    Contacts ||--o{ Relationships: "has"
-    Patients ||--o{ Relationships: "related to"
+    Countries {
+        string Country_Code
+        string Country_Name
+        string Region
+    }
+
+    States {
+        string State_Code
+        string State_Name
+        string Country_Code
+    }
+
+    Relationship_Types {
+        int Relationship_Type_ID
+        string Relationship_Type_Name
+    }
+
+    Contacts ||--o{ Relationships : "has"
+    Patients ||--o{ Relationships : "related to"
+    Relationships ||--|| Relationship_Types : "uses"
+    Contacts }o--|| Countries : "located in"
+    Contacts }o--|| States : "state located in"
+    Patients }o--|| Countries : "located in"
+    States }o--|| Countries : "belongs to"
 ```
+
+![Database model](./images/datamodel.png)
