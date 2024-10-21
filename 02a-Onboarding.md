@@ -1,4 +1,4 @@
-# 2a. Onboarding Process to Guarantee Valid Emails (With Orchestrator)
+# 2a. Onboarding process to guarantee valid emails
 
 ### Overview
 The email verification process ensures that each legal guardian or participant has a valid email before taking any action. This serves to:
