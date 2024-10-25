@@ -4,6 +4,18 @@
 
 ![Mobile app wireframes](./images/mobile-app-wireframes.png)
 
+## High level description
+
+* **Profile Management:** Caregivers can view and update basic information related to their profile and the patients they manage. This includes editing contact details and viewing information completeness for each patient profile.
+
+* **Patient Progress Tracking:** The app provides a dashboard summarizing the patient’s survey completion status, along with a "profile completeness" indicator. This gamified element encourages caregivers to complete outstanding surveys.
+
+* **File upload:** The app allows the users to upload files directly from the mobile app, either using the camera or uploading a file from the phone gallery.
+
+* **Survey Participation:** Caregivers receive notifications and reminders about upcoming surveys. For the MVP, this will only open the surveys via web portal. In the future, the app will also provide the ability to fill out these surveys directly on their mobile device.
+
+* **Data Privacy & Security:** Given the sensitive nature of the data, all mobile use cases prioritize security, including secure login, data encryption, and compliance with GDPR. This ensures that users’ information is safe and meets regulatory standards.
+
 ## 1. User Registration (Passwordless Login)
 * Actors: Legal Guardians, Parents
 * Description: Users introduce their email address and receive a magic link or verification code. After verification, they log in without a password.
