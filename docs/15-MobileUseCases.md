@@ -38,7 +38,7 @@
 * Description: Users receive notifications to complete new surveys (e.g., RSBQ). Surveys are short and frequent to encourage participation.
 * Flow:
     * User is notified about a new survey.
-    * User opens the survey.
+    * User opens the survey. *(for the MVP it will be enough to open the corresponding survey in the web)*
     * Completes the survey and submits responses.
     * App updates the completeness score and sends data to the server.
 
