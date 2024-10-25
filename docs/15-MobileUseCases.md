@@ -1,5 +1,9 @@
 # Mobile use cases
 
+## Wireframes
+
+![Mobile app wireframes](./images/mobile-app-wireframes.png)
+
 ## 1. User Registration (Passwordless Login)
 * Actors: Legal Guardians, Parents
 * Description: Users introduce their email address and receive a magic link or verification code. After verification, they log in without a password.
