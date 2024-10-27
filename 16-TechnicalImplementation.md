@@ -46,16 +46,16 @@ This serverless, scalable setup ensures efficient processing while adapting to d
 * **Functionality:** Integrates with Auth0 for authentication, handles data storage in Azure SQL, and triggers events for file uploads.
 * **Timeout and Retry Policies:** TBD.
 
-### Endpoints
+### 3.1. Azure Functions endpoints
 
 The following endpoints serve various aspects of the patient registry, providing CRUD functionality directly accessible by PowerApps and other components. This approach eliminates the need for separate “PowerApps” endpoints by standardizing interactions across all user-facing components.
 
-#### 3.1. User Onboarding
+#### 3.1.1. User Onboarding
 
 - **`POST /onboarding/submitForm`**: Processes form submissions for new user onboarding.
 - **`POST /onboarding/verifyEmail`**: Verifies user email by handling verification token or link.
 
-#### 3.2. Patient and Contact Management (CRUD)
+#### 3.1.2. Patient and Contact Management (CRUD)
 
 These endpoints handle all CRUD operations, making them directly usable by PowerApps and other components.
 
@@ -75,21 +75,21 @@ These endpoints handle all CRUD operations, making them directly usable by Power
   - **`POST /relationships`**: Links a contact to a patient.
   - **`DELETE /relationships/{id}`**: Deletes a specific patient-contact relationship.
 
-#### 3.3. File Management
+#### 3.1.3. File Management
 
 - **`POST /files/upload`**: Accepts file uploads linked to a patient or contact, storing files securely in Blob Storage.
 - **`GET /files/{id}`**: Retrieves files associated with a specific patient or contact.
 
-### 3.4. Survey and Data Collection
+#### 3.1.4. Survey and Data Collection
 
 - **`POST /surveys/submitResponse`**: Captures and stores responses from surveys, linking data back to the appropriate patient or contact.
 
-### 3.5. Notifications and Reminders
+#### 3.1.5. Notifications and Reminders
 
 - **`POST /notifications/sendEmail`**: Sends email notifications (e.g., for onboarding confirmation, survey invites).
 - **`POST /notifications/sendSMS`**: Sends SMS notifications for reminders or verifications as needed.
 
-### 3.6. Audit and Logging
+#### 3.1.6. Audit and Logging
 
 - **`POST /audit/logActivity`**: Logs user actions and system events, ensuring a clear audit trail for regulatory compliance.
 

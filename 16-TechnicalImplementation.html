@@ -73,18 +73,18 @@
 <li><strong>Timeout and Retry Policies:</strong> TBD.</li>
 </ul>
 
-<h3>Endpoints</h3>
+<h3>3.1. Azure Functions endpoints</h3>
 
 <p>The following endpoints serve various aspects of the patient registry, providing CRUD functionality directly accessible by PowerApps and other components. This approach eliminates the need for separate “PowerApps” endpoints by standardizing interactions across all user-facing components.</p>
 
-<h4>3.1. User Onboarding</h4>
+<h4>3.1.1. User Onboarding</h4>
 
 <ul>
 <li><strong><code>POST /onboarding/submitForm</code></strong>: Processes form submissions for new user onboarding.</li>
 <li><strong><code>POST /onboarding/verifyEmail</code></strong>: Verifies user email by handling verification token or link.</li>
 </ul>
 
-<h4>3.2. Patient and Contact Management (CRUD)</h4>
+<h4>3.1.2. Patient and Contact Management (CRUD)</h4>
 
 <p>These endpoints handle all CRUD operations, making them directly usable by PowerApps and other components.</p>
 
@@ -113,27 +113,27 @@
 </ul></li>
 </ul>
 
-<h4>3.3. File Management</h4>
+<h4>3.1.3. File Management</h4>
 
 <ul>
 <li><strong><code>POST /files/upload</code></strong>: Accepts file uploads linked to a patient or contact, storing files securely in Blob Storage.</li>
 <li><strong><code>GET /files/{id}</code></strong>: Retrieves files associated with a specific patient or contact.</li>
 </ul>
 
-<h3>3.4. Survey and Data Collection</h3>
+<h4>3.1.4. Survey and Data Collection</h4>
 
 <ul>
 <li><strong><code>POST /surveys/submitResponse</code></strong>: Captures and stores responses from surveys, linking data back to the appropriate patient or contact.</li>
 </ul>
 
-<h3>3.5. Notifications and Reminders</h3>
+<h4>3.1.5. Notifications and Reminders</h4>
 
 <ul>
 <li><strong><code>POST /notifications/sendEmail</code></strong>: Sends email notifications (e.g., for onboarding confirmation, survey invites).</li>
 <li><strong><code>POST /notifications/sendSMS</code></strong>: Sends SMS notifications for reminders or verifications as needed.</li>
 </ul>
 
-<h3>3.6. Audit and Logging</h3>
+<h4>3.1.6. Audit and Logging</h4>
 
 <ul>
 <li><strong><code>POST /audit/logActivity</code></strong>: Logs user actions and system events, ensuring a clear audit trail for regulatory compliance.</li>
