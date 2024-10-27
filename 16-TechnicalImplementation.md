@@ -1,8 +1,10 @@
 # Technical Implementation
 
-We are still finalizing the technical implementation details, but in the interim, this sections explains the main building blocks.
+The Rett Syndrome Patient Registry is designed to be an efficient, GDPR-compliant, and modular platform for onboarding, managing, and analyzing patient and contact information. This document provides an overview of the main technical building blocks and the tools in use, allowing contributors to understand the project context and identify areas where they can provide input or support.
 
 ## High-level architecture
+
+The high-level architecture integrates a mix of cloud services and third-party tools to provide a secure and scalable environment. The architecture diagram below illustrates the main components and their interactions:
 
 ![High-level-architecture diagram](./images/high-level-architecture.png)
 
