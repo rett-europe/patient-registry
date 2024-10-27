@@ -27,105 +27,161 @@
 
 <p><img src="./images/high-level-architecture.png" alt="High-level-architecture diagram" /></p>
 
-<h2>Content Management System (CMS) - WordPress</h2>
+<h2>1. Content Management System (CMS) - WordPress</h2>
 
 <p>The WordPress CMS serves as the frontend for the registry, handling public-facing content and facilitating initial data intake via forms. This CMS setup is chosen for its simplicity, ease of maintenance, and extensive plugin ecosystem, making it ideal for hosting and managing content updates.</p>
 
 <ul>
-<li>Technology: WordPress (hosted on WordPress.com using Business subscription)</li>
-<li>Primary Role: Public website for informational content and registry landing page</li>
+<li><strong>Technology:</strong> WordPress (hosted on WordPress.com using Business subscription)</li>
+<li><strong>Primary Role:</strong> Public website for informational content and registry landing page</li>
 </ul>
 
-<h3>Forms tool for survey management - Gravity Forms</h3>
+<h3>1.1. Forms tool for survey management - Gravity Forms</h3>
 
 <p>Gravity Forms is used within WordPress to handle user data intake, from initial onboarding to ongoing survey participation. It provides flexibility in form creation and allows easy integration with Azure services for data processing and storage.</p>
 
 <ul>
-<li>Primary Role: Collecting form submissions and survey data</li>
-<li>Integration: Data submitted via Gravity Forms is processed by Azure Functions and stored in the Azure SQL database.</li>
+<li><strong>Primary Role:</strong> Collecting form submissions and survey data</li>
+<li><strong>Integration:</strong> Data submitted via Gravity Forms is processed by Azure Functions (primarily using webhooks) and stored in the Azure SQL database. It can also be accessed via REST API</li>
+<li><strong>Error Handling:</strong> TBD, tightly linked with Azure Function timeout and retry policies</li>
 </ul>
 
-<h2>Secure Authentication - Auth0</h2>
+<h2>2. Secure Authentication - Auth0</h2>
 
 <p>The registry employs Auth0 for passwordless, secure authentication. Auth0 simplifies login management, allowing for secure access without traditional passwords, and supports two-factor authentication (2FA) for added security.</p>
 
-<p>Primary Role: Authentication and identity management.<br />
-Integration: Enables secure access to both WordPress and the backend services.</p>
-
-<h2>Orchestrator - Azure Functions</h2>
-
-<p>Azure Functions act as the core orchestrator, managing workflows across different services. This includes processing form data submissions, managing file uploads, and ensuring that data flows securely and consistently between components.</p>
-
 <ul>
-<li>Primary Role: Data processing, orchestration of backend tasks, and handling API requests.</li>
-<li>Functionality: Integrates with Auth0 for authentication, handles data storage in Azure SQL, and triggers events for file uploads.</li>
+<li><strong>Primary Role:</strong> Authentication and identity management.</li>
+<li><strong>Integration:</strong> Enables secure access to both WordPress and the backend services.</li>
 </ul>
 
-<h2>Storage</h2>
+<h2>3. Orchestrator - Azure Functions</h2>
 
-<h3>Relational database - Azure SQL</h3>
+<p>Azure Functions act as the backend for the registry system, managing key processes such as data validation, storage, form submissions, and file uploads. Serving as the backend for PowerApps, Azure Functions support CRUD operations and enable real-time data interactions. They are triggered by events like form submissions, file uploads, and PowerApps requests, processing and securely routing data to Azure SQL or Blob Storage as needed.</p>
+
+<p>This serverless, scalable setup ensures efficient processing while adapting to demand, maintaining high performance, and supporting seamless integration across the registry system.</p>
+
+<ul>
+<li><strong>Primary Role:</strong> Data processing, orchestration of backend tasks, and handling API requests.</li>
+<li><strong>Functionality:</strong> Integrates with Auth0 for authentication, handles data storage in Azure SQL, and triggers events for file uploads.</li>
+<li><strong>Timeout and Retry Policies:</strong> TBD.</li>
+</ul>
+
+<h4>User Onboarding</h4>
+
+<p>/onboarding/submitForm - Handles initial form submissions for onboarding.<br />
+/onboarding/verifyEmail - Verifies user email for onboarding.</p>
+
+<h4>Patient and Contact Management</h4>
+
+<p>/patients/create - Adds a new patient record.<br />
+/patients/update - Updates existing patient information.<br />
+/contacts/create - Adds a new contact record.<br />
+/contacts/update - Updates existing contact information.<br />
+/relationships/create - Links a patient to a contact.</p>
+
+<h4>File Management</h4>
+
+<p>/files/upload - Handles file uploads related to patient records.<br />
+/files/retrieve - Retrieves files linked to a patient or contact.</p>
+
+<h4>Survey and Data Collection</h4>
+
+<p>/surveys/submitResponse - Captures survey responses from registered contacts.</p>
+
+<h4>PowerApps Integration</h4>
+
+<p>/powerapps/readData - Fetches data for PowerApps (generalized endpoint for reading records).<br />
+/powerapps/modifyData - Handles updates, deletions, and other modifications through PowerApps.</p>
+
+<h4>Notifications and Reminders</h4>
+
+<p>/notifications/sendEmail - Sends email notifications for onboarding, survey invites, etc.<br />
+/notifications/sendSMS - Sends SMS notifications for reminders or verifications.</p>
+
+<h4>Audit and Logging</h4>
+
+<p>/audit/logActivity - Logs user actions and system events for auditing purposes.</p>
+
+<h2>4. Storage</h2>
+
+<h3>4.1. Relational database - Azure SQL</h3>
 
 <p>The primary database for the registry, Azure SQL stores patient, contact, and relationship data securely. It offers flexibility for structuring longitudinal data and supports scalability for future analytical needs.</p>
 
 <ul>
-<li>Primary Role: Storing structured data like patient demographics, contact relationships, and survey responses.</li>
-<li>Schema: Initial data model setup through SQL scripts (with Terraform setup for initial provisioning).</li>
+<li><strong>Primary Role:</strong> Storing structured data like patient demographics, contact relationships, and survey responses.</li>
+<li><strong>Schema:</strong> Initial data model setup through SQL scripts (with Terraform setup for initial provisioning).</li>
 </ul>
 
-<h3>File storage - Azure Blob Storage</h3>
+<h3>4.2. File storage - Azure Blob Storage</h3>
 
 <p>Azure Blob Storage securely stores uploaded files (e.g., genetic reports) linked to patients. Blob Storage provides scalable and secure file management, essential for large files and GDPR-compliant storage practices.</p>
 
 <ul>
-<li>Primary Role: Secure storage for files associated with patient records.</li>
-<li>File Management: Files are linked via metadata in Azure SQL, enabling easy retrieval for processing.</li>
+<li><strong>Primary Role:</strong> Secure storage for files associated with patient records.</li>
+<li><strong>File Management:</strong> Files are linked via metadata in Azure SQL, enabling easy retrieval for processing.</li>
 </ul>
 
-<h2>Admin frontend - PowerApps</h2>
+<h4>Access Management</h4>
+
+<p>Blob Storage access is secured with several key controls:<br />
+* SAS Tokens: Temporary access is granted using Shared Access Signatures (SAS), generated by the backend to restrict file access based on user roles.<br />
+* Role-Based Access Control (RBAC): RBAC ensures that only specific system components, like backend services, can write or delete files, with limited permissions granted as needed.<br />
+* Network Restrictions: Private endpoints and firewall rules restrict access to known IPs within our virtual network, minimizing exposure to the public internet.</p>
+
+<h4>Encryption</h4>
+
+<p>To ensure data protection, Blob Storage applies encryption both at rest and in transit:<br />
+* Encryption at Rest: All files are encrypted automatically using Microsoft-managed keys (AES-256).<br />
+* Encryption in Transit: HTTPS/TLS encryption secures data transfer to and from Blob Storage, protecting data confidentiality during upload and download.</p>
+
+<h2>5. Admin frontend - PowerApps</h2>
 
 <p>PowerApps serves as the internal admin interface for managing and reviewing patient registry data. This platform allows authorized administrators to perform CRUD operations and view reports in a user-friendly, customizable interface.</p>
 
 <ul>
-<li>Primary Role: Admin portal for managing patient and contact records.</li>
-<li>Access Control: Integrated with Microsoft Authentication for secure access.</li>
+<li><strong>Primary Role:</strong> Admin portal for managing patient and contact records.</li>
+<li><strong>Access Control:</strong> Integrated with Microsoft Authentication for secure access.</li>
+<li><strong>API Integration:</strong> PowerApps will connect to Azure SQL using Azure Function APIs for CRUD operations and updates.</li>
 </ul>
 
-<h2>Reporting &amp; Analytics - PowerBI</h2>
+<h2>6. Reporting &amp; Analytics - PowerBI</h2>
 
 <p>Power BI is used for reporting and analytics, providing a comprehensive view of patient demographics, registry growth, and survey results. It integrates directly with Azure SQL for seamless data access and visualization.</p>
 
 <ul>
-<li>Primary Role: Data analytics and visual reporting for stakeholders.</li>
-<li>Data Security: Anonymized data extracts from Azure SQL maintain privacy.</li>
+<li><strong>Primary Role:</strong> Data analytics and visual reporting for stakeholders.</li>
+<li><strong>Data Security:</strong> Anonymized data extracts from Azure SQL maintain privacy.</li>
 </ul>
 
-<h2>Notification Service (Email and SMS) - SendGrid/Twilio</h2>
+<h2>7. Notification Service (Email and SMS) - SendGrid/Twilio</h2>
 
 <p>To ensure effective communication with registry users, SendGrid is used for email notifications, and Twilio for SMS alerts (e.g., for two-factor authentication). These tools support both initial onboarding communications and ongoing engagement.</p>
 
 <ul>
-<li>Primary Role: Secure notification handling for verification and survey reminders.</li>
-<li>Integration: Notifications are triggered from Azure Functions to SendGrid/Twilio.</li>
+<li><strong>Primary Role:</strong> Secure notification handling for verification and survey reminders.</li>
+<li><strong>Integration:</strong> Notifications are triggered from Azure Functions to SendGrid/Twilio.</li>
 </ul>
 
-<h2>Networking</h2>
+<h2>8. Networking</h2>
 
 <p>All Azure services are configured within a secure Virtual Network (VNet) to enhance security, ensuring all internal services communicate over private IPs. Additionally, a firewall limits traffic to only authorized IPs.</p>
 
 <ul>
-<li>Primary Role: Enabling secure communication between Azure services.</li>
-<li>Configuration: IP restrictions, Azure Virtual Network Integration, and TLS.</li>
+<li><strong>Primary Role:</strong> Enabling secure communication between Azure services.</li>
+<li><strong>Configuration:</strong> IP restrictions, Azure Virtual Network Integration, and TLS.</li>
 </ul>
 
-<h2>Other Azure services</h2>
+<h2>9. Other Azure services</h2>
 
 <h3>Application Insights for Monitoring</h3>
 
 <p>Azure Application Insights provides logging, diagnostics, and performance monitoring for Azure Functions and other backend services. It supports real-time insights, helping to optimize performance and troubleshoot issues.</p>
 
 <ul>
-<li>Primary Role: Performance monitoring and error diagnostics.</li>
-<li>Use Case: Logging and analyzing request metrics, latency, and errors.</li>
+<li><strong>Primary Role:</strong> Performance monitoring and error diagnostics.</li>
+<li><strong>Use Case:</strong> Logging and analyzing request metrics, latency, and errors.</li>
 </ul>
 
 </body>
