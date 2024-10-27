@@ -27,6 +27,8 @@
 
 <p><img src="./images/high-level-architecture.png" alt="High-level-architecture diagram" /></p>
 
+<hr />
+
 <h2>1. Content Management System (CMS) - WordPress</h2>
 
 <p>The WordPress CMS serves as the frontend for the registry, handling public-facing content and facilitating initial data intake via forms. This CMS setup is chosen for its simplicity, ease of maintenance, and extensive plugin ecosystem, making it ideal for hosting and managing content updates.</p>
@@ -46,6 +48,8 @@
 <li><strong>Error Handling:</strong> TBD, tightly linked with Azure Function timeout and retry policies</li>
 </ul>
 
+<hr />
+
 <h2>2. Secure Authentication - Auth0</h2>
 
 <p>The registry employs Auth0 for passwordless, secure authentication. Auth0 simplifies login management, allowing for secure access without traditional passwords, and supports two-factor authentication (2FA) for added security.</p>
@@ -54,6 +58,8 @@
 <li><strong>Primary Role:</strong> Authentication and identity management.</li>
 <li><strong>Integration:</strong> Enables secure access to both WordPress and the backend services.</li>
 </ul>
+
+<hr />
 
 <h2>3. Orchestrator - Azure Functions</h2>
 
@@ -67,41 +73,73 @@
 <li><strong>Timeout and Retry Policies:</strong> TBD.</li>
 </ul>
 
-<h4>User Onboarding</h4>
+<h3>Endpoints</h3>
 
-<p>/onboarding/submitForm - Handles initial form submissions for onboarding.<br />
-/onboarding/verifyEmail - Verifies user email for onboarding.</p>
+<p>The following endpoints serve various aspects of the patient registry, providing CRUD functionality directly accessible by PowerApps and other components. This approach eliminates the need for separate “PowerApps” endpoints by standardizing interactions across all user-facing components.</p>
 
-<h4>Patient and Contact Management</h4>
+<h4>3.1. User Onboarding</h4>
 
-<p>/patients/create - Adds a new patient record.<br />
-/patients/update - Updates existing patient information.<br />
-/contacts/create - Adds a new contact record.<br />
-/contacts/update - Updates existing contact information.<br />
-/relationships/create - Links a patient to a contact.</p>
+<ul>
+<li><strong><code>POST /onboarding/submitForm</code></strong>: Processes form submissions for new user onboarding.</li>
+<li><strong><code>POST /onboarding/verifyEmail</code></strong>: Verifies user email by handling verification token or link.</li>
+</ul>
 
-<h4>File Management</h4>
+<h4>3.2. Patient and Contact Management (CRUD)</h4>
 
-<p>/files/upload - Handles file uploads related to patient records.<br />
-/files/retrieve - Retrieves files linked to a patient or contact.</p>
+<p>These endpoints handle all CRUD operations, making them directly usable by PowerApps and other components.</p>
 
-<h4>Survey and Data Collection</h4>
+<ul>
+<li><p><strong>Patient Endpoints</strong></p>
 
-<p>/surveys/submitResponse - Captures survey responses from registered contacts.</p>
+<ul>
+<li><strong><code>POST /patients</code></strong>: Creates a new patient record.</li>
+<li><strong><code>GET /patients/{id}</code></strong>: Retrieves details for a specific patient.</li>
+<li><strong><code>PUT /patients/{id}</code></strong>: Updates patient information.</li>
+<li><strong><code>DELETE /patients/{id}</code></strong>: Soft deletes a patient record.</li>
+</ul></li>
+<li><p><strong>Contact Endpoints</strong></p>
 
-<h4>PowerApps Integration</h4>
+<ul>
+<li><strong><code>POST /contacts</code></strong>: Creates a new contact.</li>
+<li><strong><code>GET /contacts/{id}</code></strong>: Retrieves contact information.</li>
+<li><strong><code>PUT /contacts/{id}</code></strong>: Updates contact details.</li>
+<li><strong><code>DELETE /contacts/{id}</code></strong>: Soft deletes a contact.</li>
+</ul></li>
+<li><p><strong>Relationship Endpoints</strong></p>
 
-<p>/powerapps/readData - Fetches data for PowerApps (generalized endpoint for reading records).<br />
-/powerapps/modifyData - Handles updates, deletions, and other modifications through PowerApps.</p>
+<ul>
+<li><strong><code>POST /relationships</code></strong>: Links a contact to a patient.</li>
+<li><strong><code>DELETE /relationships/{id}</code></strong>: Deletes a specific patient-contact relationship.</li>
+</ul></li>
+</ul>
 
-<h4>Notifications and Reminders</h4>
+<h4>3.3. File Management</h4>
 
-<p>/notifications/sendEmail - Sends email notifications for onboarding, survey invites, etc.<br />
-/notifications/sendSMS - Sends SMS notifications for reminders or verifications.</p>
+<ul>
+<li><strong><code>POST /files/upload</code></strong>: Accepts file uploads linked to a patient or contact, storing files securely in Blob Storage.</li>
+<li><strong><code>GET /files/{id}</code></strong>: Retrieves files associated with a specific patient or contact.</li>
+</ul>
 
-<h4>Audit and Logging</h4>
+<h3>3.4. Survey and Data Collection</h3>
 
-<p>/audit/logActivity - Logs user actions and system events for auditing purposes.</p>
+<ul>
+<li><strong><code>POST /surveys/submitResponse</code></strong>: Captures and stores responses from surveys, linking data back to the appropriate patient or contact.</li>
+</ul>
+
+<h3>3.5. Notifications and Reminders</h3>
+
+<ul>
+<li><strong><code>POST /notifications/sendEmail</code></strong>: Sends email notifications (e.g., for onboarding confirmation, survey invites).</li>
+<li><strong><code>POST /notifications/sendSMS</code></strong>: Sends SMS notifications for reminders or verifications as needed.</li>
+</ul>
+
+<h3>3.6. Audit and Logging</h3>
+
+<ul>
+<li><strong><code>POST /audit/logActivity</code></strong>: Logs user actions and system events, ensuring a clear audit trail for regulatory compliance.</li>
+</ul>
+
+<hr />
 
 <h2>4. Storage</h2>
 
@@ -136,6 +174,8 @@
 * Encryption at Rest: All files are encrypted automatically using Microsoft-managed keys (AES-256).<br />
 * Encryption in Transit: HTTPS/TLS encryption secures data transfer to and from Blob Storage, protecting data confidentiality during upload and download.</p>
 
+<hr />
+
 <h2>5. Admin frontend - PowerApps</h2>
 
 <p>PowerApps serves as the internal admin interface for managing and reviewing patient registry data. This platform allows authorized administrators to perform CRUD operations and view reports in a user-friendly, customizable interface.</p>
@@ -146,6 +186,8 @@
 <li><strong>API Integration:</strong> PowerApps will connect to Azure SQL using Azure Function APIs for CRUD operations and updates.</li>
 </ul>
 
+<hr />
+
 <h2>6. Reporting &amp; Analytics - PowerBI</h2>
 
 <p>Power BI is used for reporting and analytics, providing a comprehensive view of patient demographics, registry growth, and survey results. It integrates directly with Azure SQL for seamless data access and visualization.</p>
@@ -154,6 +196,8 @@
 <li><strong>Primary Role:</strong> Data analytics and visual reporting for stakeholders.</li>
 <li><strong>Data Security:</strong> Anonymized data extracts from Azure SQL maintain privacy.</li>
 </ul>
+
+<hr />
 
 <h2>7. Notification Service (Email and SMS) - SendGrid/Twilio</h2>
 
@@ -164,6 +208,8 @@
 <li><strong>Integration:</strong> Notifications are triggered from Azure Functions to SendGrid/Twilio.</li>
 </ul>
 
+<hr />
+
 <h2>8. Networking</h2>
 
 <p>All Azure services are configured within a secure Virtual Network (VNet) to enhance security, ensuring all internal services communicate over private IPs. Additionally, a firewall limits traffic to only authorized IPs.</p>
@@ -172,6 +218,8 @@
 <li><strong>Primary Role:</strong> Enabling secure communication between Azure services.</li>
 <li><strong>Configuration:</strong> IP restrictions, Azure Virtual Network Integration, and TLS.</li>
 </ul>
+
+<hr />
 
 <h2>9. Other Azure services</h2>
 
