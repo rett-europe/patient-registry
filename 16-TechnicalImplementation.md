@@ -12,18 +12,16 @@ The high-level architecture integrates a mix of cloud services and third-party t
 
 ## 1. Content Management System (CMS) - WordPress
 
-The WordPress CMS serves as the frontend for the registry, handling public-facing content and facilitating initial data intake via forms. This CMS setup is chosen for its simplicity, ease of maintenance, and extensive plugin ecosystem, making it ideal for hosting and managing content updates.
+The WordPress CMS serves as the public frontend for the registry, handling public-facing content and facilitating initial data intake via forms. This CMS setup is chosen for its simplicity, ease of maintenance, and extensive plugin ecosystem, making it ideal for hosting and managing content updates.
 
 * **Technology:** WordPress (hosted on WordPress.com using Business subscription)
 * **Primary Role:** Public website for informational content and registry landing page
 
-### 1.1. Forms tool for survey management - Gravity Forms
+---
 
-Gravity Forms is used within WordPress to handle user data intake, from initial onboarding to ongoing survey participation. It provides flexibility in form creation and allows easy integration with Azure services for data processing and storage.
+## 2. Front-end for users
 
-* **Primary Role:** Collecting form submissions and survey data
-* **Integration:** Data submitted via Gravity Forms is processed by Azure Functions (primarily using webhooks) and stored in the Azure SQL database. It can also be accessed via REST API
-* **Error Handling:** TBD, tightly linked with Azure Function timeout and retry policies
+We will implement a private area for users to login and maintain their profile. It will also allow users to create, edit and delete patient records.
 
 ---
 

@@ -31,22 +31,18 @@
 
 <h2>1. Content Management System (CMS) - WordPress</h2>
 
-<p>The WordPress CMS serves as the frontend for the registry, handling public-facing content and facilitating initial data intake via forms. This CMS setup is chosen for its simplicity, ease of maintenance, and extensive plugin ecosystem, making it ideal for hosting and managing content updates.</p>
+<p>The WordPress CMS serves as the public frontend for the registry, handling public-facing content and facilitating initial data intake via forms. This CMS setup is chosen for its simplicity, ease of maintenance, and extensive plugin ecosystem, making it ideal for hosting and managing content updates.</p>
 
 <ul>
 <li><strong>Technology:</strong> WordPress (hosted on WordPress.com using Business subscription)</li>
 <li><strong>Primary Role:</strong> Public website for informational content and registry landing page</li>
 </ul>
 
-<h3>1.1. Forms tool for survey management - Gravity Forms</h3>
+<hr />
 
-<p>Gravity Forms is used within WordPress to handle user data intake, from initial onboarding to ongoing survey participation. It provides flexibility in form creation and allows easy integration with Azure services for data processing and storage.</p>
+<h2>2. Front-end for users</h2>
 
-<ul>
-<li><strong>Primary Role:</strong> Collecting form submissions and survey data</li>
-<li><strong>Integration:</strong> Data submitted via Gravity Forms is processed by Azure Functions (primarily using webhooks) and stored in the Azure SQL database. It can also be accessed via REST API</li>
-<li><strong>Error Handling:</strong> TBD, tightly linked with Azure Function timeout and retry policies</li>
-</ul>
+<p>We will implement a private area for users to login and maintain their profile. It will also allow users to create, edit and delete patient records.</p>
 
 <hr />
 
