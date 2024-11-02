@@ -30,7 +30,7 @@ To comply with regulatory requirements, the system includes a mechanism to verif
 
 4. **Consent Confirmation**:
    - Each contact must confirm their consent before submitting the survey, ensuring compliance with privacy regulations such as GDPR.
-  
+
 ## Survey Response Processing
 - Once the survey is submitted, the response is securely stored in the database.
 - Each response is linked to the corresponding patient, enabling longitudinal tracking of the patient’s condition or genetic information.
