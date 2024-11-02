@@ -21,131 +21,165 @@
 
 <h2>1. Overview</h2>
 
-<p>The Rett Syndrome Patient Registry is a system designed to collect, store, and manage data related to patients with Rett Syndrome. The system focuses on gathering essential contact, patient, and longitudinal data through various forms and surveys, ensuring secure and compliant data management.</p>
-
-<p>The system provides administrators with tools to manage the data, while ensuring that contacts (legal guardians) can securely contribute relevant patient information. It is designed with GDPR compliance in mind, leveraging secure file handling and encryption protocols. The system integrates with the Microsoft ecosystem for user management and access control, providing a seamless experience for authorized personnel within the organization.</p>
+<p>The Rett Syndrome Patient Registry is a secure, user-centered platform designed to collect, manage, and analyze data related to Rett Syndrome. The registry provides a private area where caregivers can easily manage patient information, contribute ongoing data, and upload essential documents—all within a seamless and intuitive experience. With privacy and GDPR compliance as key priorities, the system leverages modern technology to simplify data entry while ensuring robust protection of personal information.</p>
 
 <h3>Key Objectives:</h3>
 
 <ul>
-<li><strong>Onboarding</strong>: Provide a public form where legal guardians can onboard themselves and their associated patients without requiring authentication.</li>
-<li><strong>Data Management</strong>: Enable the administration of contacts, patients, and relationships through a backoffice tool.</li>
-<li><strong>Longitudinal Data Collection</strong>: Facilitate the continuous collection of patient data over time via secure surveys linked to specific patients.</li>
-<li><strong>File Upload</strong>: Provide a secure mechanism for legal guardians to upload files, such as genetic reports, that are linked to patients.</li>
-<li><strong>User Management</strong>: Leverage the Microsoft 365 ecosystem for authentication and authorization, ensuring that all user access is managed securely.</li>
-<li><strong>Security &amp; Compliance</strong>: Ensure the system complies with GDPR and maintains high standards for data encryption and protection.</li>
+<li><strong>Streamlined Onboarding</strong>: Allow caregivers to sign up and create patient profiles directly within a secure private area.</li>
+<li><strong>Patient Data Management</strong>: Enable users to manage patient information within their private area, ensuring a smooth user experience.</li>
+<li><strong>Longitudinal Data Collection</strong>: Engage caregivers through integrated surveys within the private area to build valuable longitudinal data on Rett Syndrome progression.</li>
+<li><strong>File Upload</strong>: Allow caregivers to securely upload important files like genetic reports directly from the private area.</li>
+<li><strong>Admin Data Interaction</strong>: Provide backoffice tools for administrators to oversee patient and contact data for accurate records and regulatory compliance.</li>
+<li><strong>Security &amp; Compliance</strong>: Ensure GDPR-compliant data handling, using modern authentication and audit mechanisms to safeguard privacy.</li>
 </ul>
 
 <hr />
 
 <h2>Key Functional Areas</h2>
 
-<h3>1. Public Onboarding</h3>
+<h3>1. Public Landing Page</h3>
 
-<p>The onboarding form is publicly accessible and allows contacts (legal guardians) to register themselves and the patients under their care. No authentication is required to complete the form, and all submissions are stored in a staging database for review before final entry into the master database.</p>
+<p>The public landing page is built on WordPress with Elementor for flexible design capabilities.<br />
+It provides information about the Rett Syndrome Patient Registry, including anonymized data such as demographic distribution in Europe.<br />
+The public page aims to raise awareness and provide transparency about the registry's goals and its impact on the Rett community.<br />
+It will include a link to the private area, where caregivers can create and maintain patient information.</p>
+
+<h3>2. Patient Onboarding</h3>
+
+<p>Patient onboarding is done separately from the public landing page. Caregivers sign up for the platform, creating a secure account using a passwordless mechanism with authentication managed by Auth0. Once registered, caregivers gain access to a private area where they can create and manage patient profiles.</p>
 
 <ul>
-<li><p><strong>Fields Collected</strong>:</p>
-
+<li><strong>Key Features</strong>:
 <ul>
-<li>Contact: Full Name, Email, Mobile, Country, State, Relationship to Patient</li>
-<li>Patient: Full Name, Date of Birth, Gender, MECP2 Mutation (or clinical diagnosis)</li>
+<li><strong>Sign-Up</strong>: Caregivers register through the platform, receiving a secure link to access their private area.</li>
+<li><strong>Onboarding Fields</strong>:
+<ul>
+<li><strong>Contact</strong>: Full Name, Email, Mobile, Country, State</li>
 </ul></li>
-<li><p><strong>Data Flow</strong>: Submissions are first stored in the staging database and validated before being moved to the master database.</p></li>
-</ul>
-
-<p><img src="./images/onboarding-process.png" alt="Onboarding process" /></p>
-
-<h3>2. Staging Database and Data Processing</h3>
-
-<p>The staging database temporarily stores data from the onboarding form. Data must be validated (e.g., deduplication checks) before being moved to the master database, which contains the primary records for contacts, patients, and their relationships.</p>
-
-<ul>
-<li><strong>Processing Workflow</strong>: Data validation, deduplication, and transfer to the master database.</li>
-</ul>
-
-<h3>3. Master Data</h3>
-
-<p>The master database contains all validated records of contacts, patients, and their relationships. Relationships define the connections between contacts (e.g., legal guardians) and patients (e.g., mother, father, legal guardian).</p>
-
-<ul>
-<li><strong>Entities</strong>: 
-<ul>
-<li>Contacts: Legal guardians or caregivers.</li>
-<li>Patients: Individuals diagnosed with Rett Syndrome.</li>
-<li>Relationships: Connections between contacts and patients.</li>
 </ul></li>
 </ul>
 
-<h3>4. Backoffice Application (CRUD)</h3>
+<h3>3. Patient Data Management in the Private Area</h3>
 
-<p>The backoffice application allows administrators to perform full CRUD operations on contacts, patients, and their relationships. It includes list views, search functionality, and allows for adding, updating, and deleting records.</p>
-
-<ul>
-<li><strong>Functionalities</strong>:
-<ul>
-<li>CRUD operations for contacts, patients, and relationships.</li>
-<li>List and search features for managing data.</li>
-</ul></li>
-</ul>
-
-<h3>5. Longitudinal Data Collection</h3>
-
-<p>The registry supports the collection of longitudinal data by allowing administrators to send surveys to contacts at different intervals. Each survey is linked to the corresponding patient through a secure, tokenized system, ensuring data integrity.</p>
-
-<ul>
-<li><strong>Process</strong>:
-<ul>
-<li>Select a subset of patients.</li>
-<li>Generate private links using individual tokens.</li>
-<li>Send email notifications to contacts with unique links.</li>
-<li>Process survey responses and associate them with the correct patient.</li>
-</ul></li>
-</ul>
-
-<p><img src="./images/survey-data-gathering.png" alt="Logitudinal Data" /></p>
-
-<h3>6. Secure File Upload</h3>
-
-<p>The system includes a secure file upload feature where legal guardians can upload files (e.g., genetic reports) using a private, token-based link. These files are securely stored and linked to the appropriate patient, ensuring GDPR compliance.</p>
-
-<ul>
-<li><strong>File Linking</strong>: Each uploaded file is associated with a patient and stored securely in an encrypted environment.</li>
-</ul>
-
-<h3>7. User Management (Microsoft 365 Integration)</h3>
-
-<p>All user management is handled through the Microsoft 365 ecosystem, ensuring that only authorized personnel within the organization can access the system. The system uses Single Sign-On (SSO) and Role-Based Access Control (RBAC) for managing user permissions.</p>
-
-<ul>
-<li><strong>Roles</strong>: Admin, Data Manager, Viewer.</li>
-<li><strong>Authentication</strong>: Handled via Microsoft Azure AD and SSO.</li>
-</ul>
-
-<h3>8. Security and GDPR Compliance</h3>
-
-<p>The system is fully compliant with GDPR regulations, ensuring that all personal and sensitive data is protected. Explicit consent is required from contacts when submitting data or uploading files. The system uses encryption for data both at rest and in transit.</p>
-
-<ul>
-<li><strong>Security Features</strong>:
-<ul>
-<li>Data encryption (at rest and in transit).</li>
-<li>Role-based access control.</li>
-<li>GDPR-compliant consent management.</li>
-</ul></li>
-</ul>
-
-<h3>9. Reporting and Analytics</h3>
-
-<p>The system integrates with reporting tools like PowerBI to allow administrators to generate detailed reports on patient demographics, mutation data, and longitudinal trends. All reports are anonymized to ensure privacy.</p>
+<p>Once registered, caregivers have access to a private area where they can manage patient profiles directly. This approach ensures caregivers can add or update patient information with ease, while maintaining data security.</p>
 
 <ul>
 <li><strong>Capabilities</strong>:
 <ul>
-<li>Anonymized reporting.</li>
-<li>Exporting data for external analysis.</li>
+<li><strong>Add/Update Patient Profiles</strong>: Caregivers can enter or modify patient details directly from the private area.
+<ul>
+<li><strong>Patient information</strong>: Full Name, Date of Birth, Gender, MECP2 Mutation (or clinical diagnosis), Relationship with care giver.</li>
+</ul></li>
+<li><strong>Integrated Access</strong>: Longitudinal data collection and file uploads are also managed here, ensuring a seamless user experience.</li>
 </ul></li>
 </ul>
+
+<h3>4. Longitudinal Data Collection</h3>
+
+<p>To gather data over time, the registry engages caregivers through periodic surveys directly within the private area. This integrated approach ensures a smooth and consistent user experience, allowing caregivers to participate in ongoing data collection without additional authentication steps.</p>
+
+<ul>
+<li><strong>Process</strong>:
+<ul>
+<li><strong>Survey Initiation</strong>: Administrators schedule surveys for subsets of patients.</li>
+<li><strong>Seamless Access</strong>: Caregivers receive survey prompts and complete them directly in their private area, linked to the appropriate patient profiles.</li>
+</ul></li>
+</ul>
+
+<h3>5. Secure File Upload</h3>
+
+<p>The system provides a secure file upload feature, fully integrated into the private area, allowing caregivers to submit documents like genetic reports as part of the patient profile management. This integration minimizes friction, ensuring that file uploads are secure while remaining easy to use.</p>
+
+<ul>
+<li><strong>Process</strong>:
+<ul>
+<li>Caregivers can upload files directly from the private area, with uploads linked automatically to patient records.</li>
+<li>Files are securely stored in Azure Blob Storage, with GDPR-compliant encryption and access controls.</li>
+</ul></li>
+</ul>
+
+<h3>6. De-Duplication of Patients</h3>
+
+<p>Managing potential duplicates is a critical part of ensuring accurate and reliable patient data, particularly when multiple legal guardians may register the same patient independently. The de-duplication process combines automated checks and manual validation to address possible duplicates.</p>
+
+<ul>
+<li><p><strong>Challenges</strong>:</p>
+
+<ul>
+<li><strong>Multiple Guardians</strong>: Patients may have more than one legal guardian, such as divorced parents, who may register independently, leading to multiple entries for the same patient.</li>
+<li><strong>Variation in Details</strong>: Differences in data provided by different caregivers (e.g., name spellings, incomplete details) can lead to challenges in recognizing duplicates.</li>
+</ul></li>
+<li><p><strong>De-Duplication Approach</strong>:</p>
+
+<ul>
+<li><strong>Automated Matching</strong>: The system uses fuzzy matching algorithms to identify potential duplicates based on key identifiers such as:
+<ul>
+<li><strong>Full Name and Birth Date</strong>: Identifies potential matches based on exact or similar names and matching birth dates.</li>
+<li><strong>Gender and MECP2 Mutation</strong>: Cross-checks additional details like gender and mutation type to strengthen matching accuracy.</li>
+<li><strong>Contact Relationships</strong>: Tracks relationships between contacts and patients to identify scenarios where the same patient is being registered by different guardians.</li>
+</ul></li>
+<li><strong>Manual Review</strong>: Any identified potential duplicates are flagged for administrator review to determine whether records should be merged or kept separate.</li>
+<li><strong>Linking Related Records</strong>: Instead of merging records directly, related records can be linked in a "household structure" that allows administrators to track connections while maintaining separate entries for legal purposes.</li>
+</ul></li>
+<li><p><strong>Outcome</strong>:</p>
+
+<ul>
+<li><strong>Avoiding Double Counting</strong>: By linking records that are identified as potential duplicates, the system ensures accurate reporting and prevents double-counting of patients.</li>
+<li><strong>Maintaining Independence</strong>: Caregivers can continue to manage their patient records independently, even if they are linked to another caregiver’s record, ensuring flexibility and privacy.</li>
+</ul></li>
+</ul>
+
+<h3>7. User Management (Auth0 Integration)</h3>
+
+<p>User management is handled through Auth0, allowing secure access to the private area for caregivers. Auth0 also manages user profile data, with potential extensions using custom fields to store additional user-related information.</p>
+
+<ul>
+<li><strong>Authentication</strong>:
+<ul>
+<li>Secure access, can include 2FA and passwordless login mechanism for easy and secure access.</li>
+<li>User roles and permissions are managed to ensure proper data access while maintaining security.</li>
+</ul></li>
+</ul>
+
+<h3>8. Backoffice Application for Admins</h3>
+
+<p>A backoffice application built using PowerApps provides administrators with the ability to view, update, and manage patient records and relationships. This tool supports comprehensive oversight and data accuracy, ensuring all information is properly maintained.</p>
+
+<ul>
+<li><strong>Functionalities</strong>:
+<ul>
+<li>CRUD operations for managing contacts and patient records.</li>
+<li>List views, search, and filtering features to streamline data management.</li>
+</ul></li>
+</ul>
+
+<h3>9. Security &amp; GDPR Compliance</h3>
+
+<p>The registry is designed with GDPR compliance as a core principle, ensuring that all personal and sensitive data is securely collected, processed, and stored. Explicit consent is gathered from users at each submission stage, and robust audit mechanisms are implemented to maintain transparency and compliance.</p>
+
+<ul>
+<li><strong>Security Measures</strong>:
+<ul>
+<li><strong>Data Encryption</strong>: Applied to data in transit and at rest.</li>
+<li><strong>Audit Logs</strong>: Detailed logging of all user actions for transparency and compliance.</li>
+<li><strong>Consent Management</strong>: Explicit consent gathered from users during onboarding, data submissions, and file uploads.</li>
+</ul></li>
+</ul>
+
+<h3>10. Reporting and Analytics</h3>
+
+<p>The system integrates with PowerBI to provide anonymized reporting on patient demographics, genetic mutations, and survey results. This enables administrators to generate insights that support research and enhance understanding of Rett Syndrome.</p>
+
+<ul>
+<li><strong>Reporting Capabilities</strong>:
+<ul>
+<li>Generate anonymized reports for analysis.</li>
+<li>Export data in various formats for external use.</li>
+</ul></li>
+</ul>
+
+<hr />
 
 </body>
 </html>
