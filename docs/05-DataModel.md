@@ -11,6 +11,9 @@ With Auth0 handling user profile information, we will use a simplified `Contacts
 ### 2. Contacts
  * Stores information related to legal guardians, caregivers, or individuals who are responsible for patients. This includes additional details not managed by Auth0, such as country, state, preferred language, and notes.
 
+ * **DECISION NEEDED:** Should the contact profile info be entirely stored in Auth0, since it allows usual profile info and also custom information
+ https://auth0.com/docs/manage-users/user-accounts/metadata
+
 ### 3. Patients
  * Contains personal, demographic, and clinical information about the patient. Each patient is linked to a contact, representing their legal guardian or caregiver.
 
