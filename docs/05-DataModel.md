@@ -25,6 +25,8 @@ Manages consent information related to data sharing, research participation, or 
 
 ## Data Model Diagram
 
+![Data model](/docs/images/datamodel.png)
+
 ```mermaid
 erDiagram
     Contacts {
