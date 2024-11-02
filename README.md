@@ -20,8 +20,6 @@ L-1650 Luxembourg
 - [Security and Compliance](./docs/12-SecurityAndCompliance.md)
 - [Auditing](./docs/13-Auditing.md)
 
-![Technical implementation mindmap](/docs/images/technical-implementation.png)
-
 ---
 
 ## 1. Introduction
