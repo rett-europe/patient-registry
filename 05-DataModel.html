@@ -33,20 +33,20 @@
 <h3>2. Contacts</h3>
 
 <p>Stores additional information related to legal guardians, caregivers, or individuals who are responsible for patients, not managed by Auth0.<br />
-  - Fields retained/added: <code>Contact_UUID</code>, <code>Auth0_User_ID</code>, <code>Country_Code</code>, <code>State_Code</code>, <code>Preferred_Language</code>, <code>Created_At</code>, <code>Last_Updated_At</code>, <code>Notes</code>.</p>
+* Fields: <code>Contact_UUID</code>, <code>Auth0_User_ID</code>, <code>Country_Code</code>, <code>State_Code</code>, <code>Preferred_Language</code>, <code>Created_At</code>, <code>Last_Updated_At</code>, <code>Notes</code>.</p>
 
 <h3>3. Patients</h3>
 
 <p>Stores detailed information about the patient, including personal information, demographics, and clinical data.<br />
-  - Fields: <code>Patient_UUID</code>, <code>Contact_UUID</code> (foreign key to Contacts), <code>National_ID</code>, <code>Full_Name</code>, <code>Date_of_Birth</code>, <code>Gender</code>, <code>Diagnosis_Date</code>, <code>MECP2_Mutation_Clinical_Diagnosis</code>, <code>Deceased</code>, <code>Death_Date</code>, <code>Created_At</code>, <code>Last_Updated_At</code>.<br />
-  - Each patient is linked to a contact, who is their legal guardian or caregiver.</p>
+* Fields: <code>Patient_UUID</code>, <code>Contact_UUID</code> (foreign key to Contacts), <code>National_ID</code>, <code>Full_Name</code>, <code>Date_of_Birth</code>, <code>Gender</code>, <code>Diagnosis_Date</code>, <code>MECP2_Mutation_Clinical_Diagnosis</code>, <code>Deceased</code>, <code>Death_Date</code>, <code>Created_At</code>, <code>Last_Updated_At</code>.<br />
+* Each patient is linked to a contact, who is their legal guardian or caregiver.</p>
 
 <h3>4. Consent management</h3>
 
 <p>Manages consent information related to data sharing, research participation, or other specific permissions for each patient.<br />
-  - Fields: <code>Consent_ID</code>, <code>Contact_UUID</code> (foreign key to Contacts), <code>Patient_UUID</code> (foreign key to Patients), <code>Consent_Type</code>, <code>Consent_Status</code>, <code>Consent_Date</code>.<br />
-  - This structure allows flexibility in managing multiple types of consent for each patient, such as data sharing or participation in specific studies.<br />
-  - Consent records are linked to both the contact (legal guardian) and the patient, ensuring that each consent is clearly traceable to the responsible party.</p>
+* Fields: <code>Consent_ID</code>, <code>Contact_UUID</code> (foreign key to Contacts), <code>Patient_UUID</code> (foreign key to Patients), <code>Consent_Type</code>, <code>Consent_Status</code>, <code>Consent_Date</code>.<br />
+* This structure allows flexibility in managing multiple types of consent for each patient, such as data sharing or participation in specific studies.<br />
+* Consent records are linked to both the contact (legal guardian) and the patient, ensuring that each consent is clearly traceable to the responsible party.</p>
 
 <h2>Data Model Diagram</h2>
 
