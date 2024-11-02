@@ -22,13 +22,15 @@ It provides information about the Rett Syndrome Patient Registry, including anon
 The public page aims to raise awareness and provide transparency about the registry's goals and its impact on the Rett community.
 It will include a link to the private area, where caregivers can create and maintain patient information.
 
-### 2. Patient Onboarding
+### 2. Contact and Patient Onboarding
 Patient onboarding is done separately from the public landing page. Caregivers sign up for the platform, creating a secure account using a passwordless mechanism with authentication managed by Auth0. Once registered, caregivers gain access to a private area where they can create and manage patient profiles.
 
 - **Key Features**:
   - **Sign-Up**: Caregivers register through the platform, receiving a secure link to access their private area.
   - **Onboarding Fields**:
     - **Contact**: Full Name, Email, Mobile, Country, State
+
+![Contact and patient onboarding](./images/contact-patient-onboarding.png)
 
 ### 3. Patient Data Management in the Private Area
 Once registered, caregivers have access to a private area where they can manage patient profiles directly. This approach ensures caregivers can add or update patient information with ease, while maintaining data security.
