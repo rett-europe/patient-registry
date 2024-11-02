@@ -10,10 +10,7 @@ L-1650 Luxembourg
 ## Table of Contents
 
 - [Overview](./docs/01-Overview.md)
-- [Public Onboarding Form](./docs/02-OnboardingForm.md)
-- [Staging Database](./docs/03-StagingDatabase.md)
-- [Processing Data](./docs/04-ProcessingData.md)
-- [Master Data](./docs/05-MasterData.md)
+- [Data model](./docs/05-MasterData.md)
 - [Backoffice CRUD](./docs/06-BackofficeCRUD.md)
 - [Longitudinal Data](./docs/07-LogitudinalData.md)
 - [Survey Management](./docs/08-SurveyManagement.md)
