@@ -14,9 +14,9 @@ Consent is required before any personal or sensitive data can be collected from 
 - **Right to Withdraw**: Participants have the right to withdraw consent at any time. Upon withdrawal, their data will be anonymized or deleted as required by GDPR.
 
 ### How Consent is Obtained:
-- **Online Forms**: Consent is collected through the public onboarding forms, where participants or legal guardians are required to check a box confirming their agreement with the data usage terms.
+- **Private Area Access**: Consent is collected through the authenticated private area, where participants or legal guardians can view and agree to the data usage terms before interacting with any features.
 - **File Uploads**: Before uploading any documents (e.g., genetic reports), participants are required to give consent for the processing and storage of these files.
-- **Surveys**: Each survey sent to participants is accompanied by a clear consent prompt, ensuring that participants understand how their responses will be used.
+- **Surveys**: Each survey sent to participants includes a consent prompt, ensuring that participants understand how their responses will be used.
 
 ---
 

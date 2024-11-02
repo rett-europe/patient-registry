@@ -6,14 +6,14 @@ The file upload feature allows contacts to securely upload files (such as geneti
 
 ## Workflow
 
-1. **Token-Based Links**
-   - Each contact receives an individual token (unique link) via email, which is associated with a specific patient.
-   - The token is used to access the file upload page, ensuring that the file is securely linked to the correct patient.
+1. **Authentication via Private Area**
+   - Contacts must authenticate themselves by logging into their private area to access the file upload feature.
+   - This ensures that files are securely uploaded and linked to the correct patient.
 
 2. **Secure Upload**
-   - Contacts can upload files (e.g., genetic reports) through a secure form.
-   - File types can include PDFs, images, or any other supported format.
-   - The file upload form does not require login, only the token for authentication.
+   - Contacts can upload files (e.g., genetic reports) through a secure form in the private area.
+   - File types can include PDFs, images, or other supported formats.
+   - The file upload process requires authentication, ensuring that only authorized users can upload files.
 
 3. **OpenAI Integration for Key Data Extraction**
    - Once the file is uploaded, OpenAI is used to extract key information such as:
@@ -30,7 +30,7 @@ The file upload feature allows contacts to securely upload files (such as geneti
 
 5. **Doctor Review and Validation**
    - After OpenAI extracts the key data, the system can notify a designated doctor to review and validate the diagnosis.
-   - The doctor receives a secure, token-based link to access the patient’s report and the extracted data.
+   - The doctor receives a secure notification to access the patient’s report and the extracted data.
    - The doctor reviews the report, analyzes the provided diagnostic information, and can validate or add comments to the diagnosis.
    - The doctor’s validation is securely logged and linked to the patient’s record in the database.
 

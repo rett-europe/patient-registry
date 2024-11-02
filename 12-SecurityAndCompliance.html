@@ -24,8 +24,9 @@
 <h2>Authentication and Authorization</h2>
 
 <ul>
+<li><strong>Private Area for Contacts</strong>: Contacts must authenticate via Auth0 to access their private area, where they can view and manage patient information, upload files, and complete surveys.</li>
 <li><strong>Backoffice Access</strong>: Access to the backoffice is restricted to authorized personnel only, using Microsoft 365 authentication (or other OAuth systems).</li>
-<li><strong>Role-based Access Control (RBAC)</strong>: Permissions are granted based on user roles, such as Admin or Data Manager, with different levels of access.</li>
+<li><strong>Role-based Access Control (RBAC)</strong>: Permissions are granted based on user roles, such as Admin, Data Manager, or Contact, with different levels of access. The private area is accessible only to authenticated contacts, while the backoffice is limited to administrators and data managers.</li>
 </ul>
 
 <h2>GDPR Compliance</h2>
@@ -40,15 +41,15 @@
 <h2>File Handling</h2>
 
 <ul>
-<li><strong>Secure Uploads</strong>: Files uploaded (e.g., genetic reports) are stored in a secure environment, with access restricted to authorized personnel only.</li>
+<li><strong>Secure Uploads</strong>: Files uploaded (e.g., genetic reports) are handled within the private area, ensuring that only authenticated users can upload files. The files are stored in a secure environment, with access restricted to authorized personnel only.</li>
 <li><strong>Anonymization</strong>: Personal identifiers are anonymized when used in reports or exports to protect patient and contact privacy.</li>
 </ul>
 
 <h2>Data Retention</h2>
 
 <ul>
-<li>Staging data is retained only until it is reviewed and transferred to the master database.</li>
-<li>Master data is retained indefinitely unless deletion is requested by a user or required by law.</li>
+<li><strong>Staging Data</strong>: Staging data is retained only until it is reviewed and transferred to the master database.</li>
+<li><strong>Master Data</strong>: Master data is retained indefinitely unless deletion is requested by a user or required by law.</li>
 </ul>
 
 </body>

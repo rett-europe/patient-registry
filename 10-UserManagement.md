@@ -1,6 +1,6 @@
 # 10. User Management
 
-This section outlines the user management process, which is integrated with the Microsoft ecosystem to ensure secure and centralized control of access to the system.
+This section outlines the internal user management process, which is integrated with the Microsoft ecosystem to ensure secure and centralized control of access to the system.
 
 ---
 
