@@ -35,11 +35,11 @@
 <li>The system allows filtering based on criteria such as age, mutation type, or previous survey responses.</li>
 </ul>
 
-<h2>Token-Based Survey Distribution</h2>
+<h2>Private Area for Survey Access</h2>
 
 <ul>
-<li>For each selected patient, the system generates a unique token tied to the contact associated with the patient.</li>
-<li>This token is used to create a private, one-time link for the survey, ensuring that only the designated contact can submit a response.</li>
+<li>Surveys are accessed through a private area where users must authenticate.</li>
+<li>Each contact associated with a patient will log in to their private area to view and complete any assigned surveys.</li>
 </ul>
 
 <h2>Contact Authentication and Verification</h2>
@@ -47,15 +47,15 @@
 <p>To comply with regulatory requirements, the system includes a mechanism to verify that the survey is completed by the designated contact:</p>
 
 <ol>
-<li><p><strong>Token Verification</strong>: </p>
+<li><p><strong>Authentication</strong>: </p>
 
 <ul>
-<li>The survey link is unique to each contact-patient pair and can only be used once. Each link contains an embedded token that is verified before the survey is opened.</li>
+<li>Contacts are required to authenticate themselves before accessing their private area where surveys are available. Authentication may include email verification and a passwordless login or a similar secure method.</li>
 </ul></li>
 <li><p><strong>Two-Factor Authentication (2FA)</strong>:</p>
 
 <ul>
-<li>Before completing the survey, the contact is required to verify their identity using a second factor of authentication (2FA), such as an SMS code or authentication app.</li>
+<li>Before completing the survey, the contact may be required to verify their identity using a second factor of authentication (2FA), such as an SMS code or authentication app.</li>
 <li>This ensures that only the authorized contact can access and complete the survey.</li>
 </ul></li>
 <li><p><strong>Audit Trail</strong>:</p>

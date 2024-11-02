@@ -10,18 +10,18 @@ The Survey Management system facilitates the distribution of surveys to contacts
 - Administrators can select a subset of patients from the master database to receive specific surveys.
 - The system allows filtering based on criteria such as age, mutation type, or previous survey responses.
 
-## Token-Based Survey Distribution
-- For each selected patient, the system generates a unique token tied to the contact associated with the patient.
-- This token is used to create a private, one-time link for the survey, ensuring that only the designated contact can submit a response.
+## Private Area for Survey Access
+- Surveys are accessed through a private area where users must authenticate.
+- Each contact associated with a patient will log in to their private area to view and complete any assigned surveys.
 
 ## Contact Authentication and Verification
 To comply with regulatory requirements, the system includes a mechanism to verify that the survey is completed by the designated contact:
   
-1. **Token Verification**: 
-   - The survey link is unique to each contact-patient pair and can only be used once. Each link contains an embedded token that is verified before the survey is opened.
+1. **Authentication**: 
+   - Contacts are required to authenticate themselves before accessing their private area where surveys are available. Authentication may include email verification and a passwordless login or a similar secure method.
   
 2. **Two-Factor Authentication (2FA)**:
-   - Before completing the survey, the contact is required to verify their identity using a second factor of authentication (2FA), such as an SMS code or authentication app.
+   - Before completing the survey, the contact may be required to verify their identity using a second factor of authentication (2FA), such as an SMS code or authentication app.
    - This ensures that only the authorized contact can access and complete the survey.
 
 3. **Audit Trail**:
