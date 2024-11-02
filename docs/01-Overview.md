@@ -69,6 +69,8 @@ Managing potential duplicates is a critical part of ensuring accurate and reliab
   - **Manual Review**: Any identified potential duplicates are flagged for administrator review to determine whether records should be merged or kept separate.
   - **Linking Related Records**: Instead of merging records directly, related records can be linked in a "household structure" that allows administrators to track connections while maintaining separate entries for legal purposes.
 
+![Duplicate detection](./images/duplicate-detection.png)
+
 - **Outcome**:
   - **Avoiding Double Counting**: By linking records that are identified as potential duplicates, the system ensures accurate reporting and prevents double-counting of patients.
   - **Maintaining Independence**: Caregivers can continue to manage their patient records independently, even if they are linked to another caregiver’s record, ensuring flexibility and privacy.
