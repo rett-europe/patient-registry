@@ -11,6 +11,7 @@ L-1650 Luxembourg
 
 - [Overview](./docs/01-Overview.md)
 - [Data model](./docs/05-MasterData.md)
+- [Collected data](./docs/06-BackofficeCRUD.md)
 - [Backoffice CRUD](./docs/06-BackofficeCRUD.md)
 - [Longitudinal Data](./docs/07-LogitudinalData.md)
 - [Survey Management](./docs/08-SurveyManagement.md)
@@ -19,6 +20,9 @@ L-1650 Luxembourg
 - [Reporting and Analytics](./docs/11-ReportingAndAnalytics.md)
 - [Security and Compliance](./docs/12-SecurityAndCompliance.md)
 - [Auditing](./docs/13-Auditing.md)
+- [Consent Management](./docs/14-ConsentManagement.md)
+- [Mobile use cases](./docs/15-MobileUseCases.md)
+- [Technical implementation](./docs/16-TechnicalImplementation.md)
 
 ---
 
