@@ -23,145 +23,107 @@
 
 <p><img src="./images/mobile-app-wireframes.png" alt="Mobile app wireframes" /></p>
 
-<h2>High level description</h2>
+<h2>1. Landing Page</h2>
 
 <ul>
-<li><p><strong>Profile Management:</strong> Caregivers can view and update basic information related to their profile and the patients they manage. This includes editing contact details and viewing information completeness for each patient profile.</p></li>
-<li><p><strong>Patient Progress Tracking:</strong> The app provides a dashboard summarizing the patient’s survey completion status, along with a "profile completeness" indicator. This gamified element encourages caregivers to complete outstanding surveys.</p></li>
-<li><p><strong>File upload:</strong> The app allows the users to upload files directly from the mobile app, either using the camera or uploading a file from the phone gallery.</p></li>
-<li><p><strong>Survey Participation:</strong> Caregivers receive notifications and reminders about upcoming surveys. For the MVP, this will only open the surveys via web portal. In the future, the app will also provide the ability to fill out these surveys directly on their mobile device.</p></li>
-<li><p><strong>Data Privacy &amp; Security:</strong> Given the sensitive nature of the data, all mobile use cases prioritize security, including secure login, data encryption, and compliance with GDPR. This ensures that users’ information is safe and meets regulatory standards.</p></li>
-</ul>
-
-<h2>1. User Registration (Passwordless Login)</h2>
-
+<li><strong>Description</strong>: This is the initial page that users see when they open the app.</li>
+<li><strong>Content</strong>:
 <ul>
-<li>Actors: Legal Guardians, Parents</li>
-<li>Description: Users introduce their email address and receive a magic link or verification code. After verification, they log in without a password.</li>
-<li>Flow:
-<ul>
-<li>User enters email.</li>
-<li>System sends a verification code or link.</li>
-<li>User verifies and logs in.</li>
-<li>App confirms successful registration and login.</li>
+<li><strong>Logo</strong>: The logo of the patient registry.</li>
+<li><strong>Welcome Message</strong>: A brief welcome message introducing the purpose of the app.</li>
+<li><strong>Login Button</strong>: A button that initiates the login process for users.</li>
 </ul></li>
 </ul>
 
-<h2>2. Profile Viewing and Completeness Check</h2>
+<h2>2. Auth0 Authentication Flow</h2>
 
 <ul>
-<li>Actors: Legal Guardians, Parents</li>
-<li>Description: Users can view their profile information, including demographic details about themselves and their child. They can also see a "completeness score" for how many surveys they've completed.</li>
-<li>Flow:
+<li><strong>Description</strong>: Users will authenticate using Auth0's OAuth flow.</li>
+<li><strong>Flow Details</strong>:
 <ul>
-<li>User logs in.</li>
-<li>App displays personal details and patient information.</li>
-<li>App shows progress/completeness score for submitted surveys.</li>
+<li><strong>OAuth Flow</strong>: When users click the login button, they will be redirected to Auth0 to complete the login process.</li>
+<li><strong>Successful Login</strong>: After successful login, users are redirected to the app's Home Page.</li>
 </ul></li>
 </ul>
 
-<h2>3. Survey Completion</h2>
+<h2>3. Home Page</h2>
 
 <ul>
-<li>Actors: Legal Guardians, Parents</li>
-<li>Description: Users receive notifications to complete new surveys (e.g., RSBQ). Surveys are short and frequent to encourage participation.</li>
-<li>Flow:
+<li><strong>Description</strong>: This is the entry point to the user's private area after a successful login.</li>
+<li><strong>Content</strong>:
 <ul>
-<li>User is notified about a new survey.</li>
-<li>User opens the survey. <em>(for the MVP it will be enough to open the corresponding survey in the web)</em></li>
-<li>Completes the survey and submits responses.</li>
-<li>App updates the completeness score and sends data to the server.</li>
+<li><strong>Welcome User</strong>: Displays a welcome message with the user's name.</li>
+<li><strong>Options</strong>:
+<ul>
+<li><strong>Edit Profile</strong>: Navigate to the profile editing page.</li>
+<li><strong>Add Patient</strong>: Option to add a new patient.</li>
+<li><strong>Edit Patients</strong>: If patients were previously added, an option to view and edit them.</li>
+</ul></li>
 </ul></li>
 </ul>
 
-<h2>4. Document Submission (e.g., Genetic Reports)</h2>
+<h2>4. Edit Profile Page</h2>
 
 <ul>
-<li>Actors: Legal Guardians, Parents</li>
-<li>Description: Users can upload documents such as genetic reports securely, which will be linked to the patient's profile.</li>
-<li>Flow:
+<li><strong>Description</strong>: This page allows users to view and edit their profile information.</li>
+<li><strong>Content</strong>:
 <ul>
-<li>User logs in and selects the patient profile.</li>
-<li>User uploads a document (e.g., a genetic report).</li>
-<li>App confirms successful upload and links the document to the patient's profile.</li>
+<li><strong>User Profile Info</strong>: Fields such as name, email, phone number, etc.</li>
+<li><strong>Edit Capability</strong>: Users can update their information and save changes.</li>
 </ul></li>
 </ul>
 
-<h2>5. Survey and File Submission Status Tracking</h2>
+<h2>5. Add New Patient Page</h2>
 
 <ul>
-<li>Actors: Legal Guardians, Parents</li>
-<li>Description: Users can track the status of the surveys they’ve submitted and any documents uploaded for their patient profile.</li>
-<li>Flow:
+<li><strong>Description</strong>: This page allows users to add a new patient to the registry.</li>
+<li><strong>Flow</strong>:
 <ul>
-<li>User logs in and selects a patient profile.</li>
-<li>App displays a list of submitted surveys and uploaded documents.</li>
-<li>Status indicators show if surveys are pending, submitted, or under review.</li>
+<li><strong>First Patient</strong>: If no patients have been added yet, the user will be prompted to create the first patient.</li>
+<li><strong>Additional Patients</strong>: Users can add multiple patients.</li>
+</ul></li>
+<li><strong>Fields</strong>:
+<ul>
+<li><strong>Name</strong>: First and last name of the patient.</li>
+<li><strong>Birth Date</strong>: Patient's date of birth.</li>
+<li><strong>Additional Information</strong>: Gender, relationship to user, and other basic details.</li>
 </ul></li>
 </ul>
 
-<h2>6. Push Notifications for Survey Reminders</h2>
+<h2>6. List Patients Page</h2>
 
 <ul>
-<li>Actors: Legal Guardians, Parents</li>
-<li>Description: The app sends reminders when new surveys are available or when users haven't completed required steps (e.g., document uploads).</li>
-<li>Flow:
+<li><strong>Description</strong>: Displays a list of patients that have been added by the user.</li>
+<li><strong>Content</strong>:
 <ul>
-<li>User receives a notification about an available survey.</li>
-<li>User opens the app and completes the survey or takes necessary action.</li>
+<li><strong>Patient List</strong>: Displays the names and brief details of each patient.</li>
+<li><strong>Edit Button</strong>: Each patient entry includes an edit button.</li>
+<li><strong>Add New Patient Button</strong>: Provides an option to add another patient.</li>
 </ul></li>
 </ul>
 
-<h2>7. View Patient Progress and Updates</h2>
+<h2>7. Edit Patient Info Page</h2>
 
 <ul>
-<li>Actors: Legal Guardians, Parents</li>
-<li>Description: Users can view updates or new findings based on their submitted data and the progress of the patient registry as a whole.</li>
-<li>Flow:
+<li><strong>Description</strong>: This page allows the user to edit information about a specific patient.</li>
+<li><strong>Content</strong>:
 <ul>
-<li>User logs in.</li>
-<li>User navigates to a section where they can see aggregated data insights or personal progress.</li>
-<li>App displays updates relevant to the patient.</li>
+<li><strong>Patient Details</strong>: Fields such as name, birth date, age, and other information related to the patient.</li>
+<li><strong>Save Changes</strong>: Users can make modifications and save the updated details.</li>
 </ul></li>
 </ul>
 
-<h2>8. Edit Basic Profile Information</h2>
+<h1>User Flow Summary</h1>
 
-<ul>
-<li>Actors: Legal Guardians, Parents</li>
-<li>Description: Users can update basic information like their email address or contact details.</li>
-<li>Flow:
-<ul>
-<li>User logs in and navigates to profile settings.</li>
-<li>User edits and updates basic personal details.</li>
-<li>System validates changes and confirms updates.</li>
-</ul></li>
-</ul>
-
-<h2>9. Multi-language Support</h2>
-
-<ul>
-<li>Actors: Legal Guardians, Parents</li>
-<li>Description: The app offers language support (e.g., Spanish, Portuguese, English) to accommodate users across different countries.</li>
-<li>Flow:
-<ul>
-<li>User selects preferred language at registration or in settings.</li>
-<li>App content is displayed in the selected language.</li>
-</ul></li>
-</ul>
-
-<h2>10. Privacy and Consent Management</h2>
-
-<ul>
-<li>Actors: Legal Guardians, Parents</li>
-<li>Description: Users review and agree to consent documents related to data privacy and participation in the registry.</li>
-<li>Flow:
-<ul>
-<li>User is prompted to review consent terms during registration.</li>
-<li>User agrees or reviews terms at any time from their profile settings.</li>
-<li>App logs consent responses.</li>
-</ul></li>
-</ul>
+<ol>
+<li><strong>Landing Page</strong>: User starts here and clicks the login button.</li>
+<li><strong>Auth0 Authentication</strong>: User is redirected to Auth0 for authentication.</li>
+<li><strong>Home Page</strong>: Upon successful login, the user can choose to edit their profile, add a patient, or edit existing patients.</li>
+<li><strong>Edit Profile</strong>: Allows users to update their personal information.</li>
+<li><strong>Add New Patient</strong>: Users add the first or additional patients.</li>
+<li><strong>List Patients</strong>: If patients exist, they are listed here with options to edit.</li>
+<li><strong>Edit Patient Info</strong>: Users can edit the details of an existing patient.</li>
+</ol>
 
 </body>
 </html>
