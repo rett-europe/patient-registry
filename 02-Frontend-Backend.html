@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Front-end / Back-end Interaction</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <nav>
+        <!-- Logo -->
+        <a href="https://www.rettsyndrome.eu/">
+            <img src="https://www.rettsyndrome.eu/wp-content/uploads/2020/01/cropped-cropped-LogoRSEshort.png" alt="Rett Syndrome Logo" class="logo">
+        </a>
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a href="index.html">Return Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+    <h1>Front-end / Back-end Interaction</h1>
+
+<h2>User Profile Creation / Sign-up</h2>
+
+<p>In this sequence, a new user signs up and creates their profile through <strong>Auth0</strong>, which then authenticates the user with an access token. The <strong>Backend API</strong> logs the user registration in the <strong>DB</strong> if needed.</p>
+
+<pre><code>sequenceDiagram
+    participant Frontend
+    participant Auth0
+    participant BackendAPI
+    participant DB
+
+    Frontend-&gt;&gt;Auth0: Sign-Up Request
+    Auth0--&gt;&gt;Frontend: Access Token
+    Frontend-&gt;&gt;BackendAPI: Send Access Token for registration
+    BackendAPI-&gt;&gt;Auth0: Verify Access Token
+    Auth0--&gt;&gt;BackendAPI: Token Verified
+    BackendAPI-&gt;&gt;DB: Log user registration (optional)
+    BackendAPI--&gt;&gt;Frontend: Success Message
+</code></pre>
+
+<h2>User Sign-In</h2>
+
+<p>This sequence shows the user sign-in process. <strong>Auth0</strong> authenticates the user and provides an access token, which the <strong>Frontend</strong> uses to make authenticated requests to the <strong>Backend API</strong>. The <strong>Backend API</strong> verifies the token, retrieves necessary data from the <strong>DB</strong>, and returns it to the <strong>Frontend</strong>.</p>
+
+<pre><code>sequenceDiagram
+    participant Frontend
+    participant Auth0
+    participant BackendAPI
+    participant DB
+
+    Frontend-&gt;&gt;Auth0: Sign-In Request
+    Auth0--&gt;&gt;Frontend: Access Token
+    Frontend-&gt;&gt;BackendAPI: Access Token for authenticated requests
+    BackendAPI-&gt;&gt;Auth0: Verify Access Token
+    Auth0--&gt;&gt;BackendAPI: Token Verified
+    BackendAPI-&gt;&gt;DB: Retrieve data (e.g., user or patient info)
+    BackendAPI--&gt;&gt;Frontend: Data Response
+</code></pre>
+
+<h2>Update User Profile</h2>
+
+<p>In this sequence, a user requests to update their profile information. The <strong>Backend API</strong> receives the request, verifies the token with <strong>Auth0</strong>, and updates the user profile in <strong>Auth0</strong>. Any necessary logs can also be saved to the <strong>DB</strong>.</p>
+
+<pre><code>sequenceDiagram
+    participant Frontend
+    participant BackendAPI
+    participant Auth0
+    participant DB
+
+    Frontend-&gt;&gt;BackendAPI: Update Profile Request with Access Token
+    BackendAPI-&gt;&gt;Auth0: Verify Access Token
+    Auth0--&gt;&gt;BackendAPI: Token Verified
+    BackendAPI-&gt;&gt;Auth0: Update Profile Information
+    Auth0--&gt;&gt;BackendAPI: Update Confirmation
+    BackendAPI-&gt;&gt;DB: Log profile update (optional)
+    BackendAPI--&gt;&gt;Frontend: Success Response
+</code></pre>
+
+<h2>Create a New Patient</h2>
+
+<p>This sequence shows how a new patient entry is created. The <strong>Frontend</strong> sends a request to create a new patient, which the <strong>Backend API</strong> verifies with <strong>Auth0</strong>. Upon successful verification, the <strong>Backend API</strong> stores the patient data in the <strong>DB</strong> and confirms with the <strong>Frontend</strong>.</p>
+
+<pre><code>sequenceDiagram
+    participant Frontend
+    participant BackendAPI
+    participant Auth0
+    participant DB
+
+    Frontend-&gt;&gt;BackendAPI: Create Patient Request with Access Token
+    BackendAPI-&gt;&gt;Auth0: Verify Access Token
+    Auth0--&gt;&gt;BackendAPI: Token Verified
+    BackendAPI-&gt;&gt;DB: Store new patient data
+    BackendAPI--&gt;&gt;Frontend: Success Response with Patient ID
+</code></pre>
+
+<h2>Get User and Patient Information</h2>
+
+<p>In this sequence, the <strong>Frontend</strong> requests both profile and patient information. The <strong>Backend API</strong> verifies the user’s token with <strong>Auth0</strong>, retrieves profile information from <strong>Auth0</strong> and patient data from the <strong>DB</strong>, and sends both back to the <strong>Frontend</strong>.</p>
+
+<pre><code>sequenceDiagram
+    participant Frontend
+    participant BackendAPI
+    participant Auth0
+    participant DB
+
+    Frontend-&gt;&gt;BackendAPI: Request Profile &amp; Patient Info with Access Token
+    BackendAPI-&gt;&gt;Auth0: Verify Access Token
+    Auth0--&gt;&gt;BackendAPI: Token Verified
+    BackendAPI-&gt;&gt;Auth0: Get Profile Information
+    Auth0--&gt;&gt;BackendAPI: Profile Data
+    BackendAPI-&gt;&gt;DB: Retrieve Patient Information
+    DB--&gt;&gt;BackendAPI: Patient Data
+    BackendAPI--&gt;&gt;Frontend: Profile and Patient Data Response
+</code></pre>
+
+</body>
+</html>
