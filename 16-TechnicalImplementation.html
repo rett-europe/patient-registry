@@ -129,23 +129,17 @@
 <li><strong><code>POST /notifications/sendSMS</code></strong>: Sends SMS notifications for reminders or verifications as needed.</li>
 </ul>
 
-<h4>3.1.6. Audit and Logging</h4>
-
-<ul>
-<li><strong><code>POST /audit/logActivity</code></strong>: Logs user actions and system events, ensuring a clear audit trail for regulatory compliance.</li>
-</ul>
-
 <hr />
 
 <h2>4. Storage</h2>
 
-<h3>4.1. Relational database - Azure SQL</h3>
+<h3>4.1. NoSQL database - Azure Cosmos DB</h3>
 
-<p>The primary database for the registry, Azure SQL stores patient, contact, and relationship data securely. It offers flexibility for structuring longitudinal data and supports scalability for future analytical needs.</p>
+<p>The primary database for the registry, Azure Cosmos DB stores patient, contact, and relationship data securely. It offers flexibility for structuring longitudinal data and supports scalability for future analytical needs.</p>
 
 <ul>
-<li><strong>Primary Role:</strong> Storing structured data like patient demographics, contact relationships, and survey responses.</li>
-<li><strong>Schema:</strong> Initial data model setup through SQL scripts (with Terraform setup for initial provisioning).</li>
+<li><strong>Primary Role:</strong> Storing structured and unstructured data like patient demographics, contact relationships, and survey responses.</li>
+<li><strong>Schema:</strong> Initial data model setup through JSON documents (with Terraform setup for initial provisioning).</li>
 </ul>
 
 <h3>4.2. File storage - Azure Blob Storage</h3>
@@ -172,7 +166,21 @@
 
 <hr />
 
-<h2>5. Admin frontend - PowerApps</h2>
+<h2>5. AI/ML Operations</h2>
+
+<h3>5.1. Genetic Reports Analysis</h3>
+
+<p>We utilize AI/ML operations to analyze genetic reports, specifically to extract Mecp2 mutations. These mutations are then added to the patient profile, enhancing the accuracy and comprehensiveness of patient data.</p>
+
+<ul>
+<li><strong>Primary Role:</strong> Extracting and analyzing genetic mutations from reports.</li>
+<li><strong>Process:</strong> Using machine learning models to identify Mecp2 mutations and integrate the findings into the patient profile.</li>
+<li><strong>Tools:</strong> Leveraging Azure Machine Learning and other AI tools for processing and analysis.</li>
+</ul>
+
+<hr />
+
+<h2>6. Admin frontend - PowerApps</h2>
 
 <p>PowerApps serves as the internal admin interface for managing and reviewing patient registry data. This platform allows authorized administrators to perform CRUD operations and view reports in a user-friendly, customizable interface.</p>
 
@@ -184,7 +192,7 @@
 
 <hr />
 
-<h2>6. Reporting &amp; Analytics - PowerBI</h2>
+<h2>7. Reporting &amp; Analytics - PowerBI</h2>
 
 <p>Power BI is used for reporting and analytics, providing a comprehensive view of patient demographics, registry growth, and survey results. It integrates directly with Azure SQL for seamless data access and visualization.</p>
 
@@ -195,7 +203,7 @@
 
 <hr />
 
-<h2>7. Notification Service (Email and SMS) - SendGrid/Twilio</h2>
+<h2>8. Notification Service (Email and SMS) - SendGrid/Twilio</h2>
 
 <p>To ensure effective communication with registry users, SendGrid is used for email notifications, and Twilio for SMS alerts (e.g., for two-factor authentication). These tools support both initial onboarding communications and ongoing engagement.</p>
 
@@ -206,7 +214,7 @@
 
 <hr />
 
-<h2>8. Networking</h2>
+<h2>9. Networking</h2>
 
 <p>All Azure services are configured within a secure Virtual Network (VNet) to enhance security, ensuring all internal services communicate over private IPs. Additionally, a firewall limits traffic to only authorized IPs.</p>
 
@@ -217,7 +225,7 @@
 
 <hr />
 
-<h2>9. Other Azure services</h2>
+<h2>10. Other Azure services</h2>
 
 <h3>Application Insights for Monitoring</h3>
 
